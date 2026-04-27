@@ -3746,7 +3746,7 @@ div.modal {z-index: 1002 !important;}
 	top: -1px;
 	width: 35px;
 	height: 54px;
-	background: url(/g/s3/lp/lpc.v4/images/green_toy.svg) 50% no-repeat;
+	background: url(g/s3/lp/lpc.v4/images/green_toy.svg) 50% no-repeat;
 	background-color: transparent !important;
 	border-radius: 0;
 	transform-origin: top;
@@ -3760,7 +3760,7 @@ div.modal {z-index: 1002 !important;}
 	top: -1px;
 	width: 27px;
 	height: 50px;
-	background: url(/g/s3/lp/lpc.v4/images/small_green_toy.svg) 50% /cover no-repeat;
+	background: url(g/s3/lp/lpc.v4/images/small_green_toy.svg) 50% /cover no-repeat;
 	background-color: transparent !important;
 	border-radius: 0;
 	transform-origin: top;
@@ -3774,7 +3774,7 @@ div.modal {z-index: 1002 !important;}
 	top: -1px;
 	width: 31px;
 	height: 50px;
-	background: url(/g/s3/lp/lpc.v4/images/red_toy.svg) 50% /cover no-repeat;
+	background: url(g/s3/lp/lpc.v4/images/red_toy.svg) 50% /cover no-repeat;
 	background-color: transparent !important;
 	border-radius: 0;
 	transform-origin: top;
@@ -3788,7 +3788,7 @@ div.modal {z-index: 1002 !important;}
 	top: -1px;
 	width: 27px;
 	height: 48px;
-	background: url(/g/s3/lp/lpc.v4/images/small_red_toy.svg) 50% /cover no-repeat;
+	background: url(g/s3/lp/lpc.v4/images/small_red_toy.svg) 50% /cover no-repeat;
 	background-color: transparent !important;
 	border-radius: 0;
 	transform-origin: top;
@@ -3900,7 +3900,7 @@ div.modal {z-index: 1002 !important;}
 
 
 .s3-preloader .spinner {
-	background: url('/g/s3/lp/lpc.v4/images/new_loader.svg') 50% /cover no-repeat;
+	background: url('g/s3/lp/lpc.v4/images/new_loader.svg') 50% /cover no-repeat;
 	animation: none;
 	box-shadow: none;
 	border: none;
