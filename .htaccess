@@ -1,0 +1,15 @@
+Options -MultiViews
+RewriteEngine On
+
+# index.html -> /
+RewriteRule ^index\.html$ / [R=301,L,NC]
+
+# /page -> /page.html, если файл существует
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^([A-Za-z0-9/_-]+)$ $1.html [L]
+
+# /page.html -> /page
+RewriteCond %{THE_REQUEST} \s/([^.?\s]+)\.html[\s?] [NC]
+RewriteRule ^([A-Za-z0-9/_-]+)\.html$ /$1 [R=301,L]
