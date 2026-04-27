@@ -259,10 +259,13 @@
       }
 
       event.preventDefault();
-      image.src = img.currentSrc || img.src;
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+
+      image.src = img.currentSrc || img.getAttribute("src") || img.src;
       image.alt = img.alt || "";
       lightbox.classList.add("is-open");
-    });
+    }, true);
 
     lightbox.addEventListener("click", function (event) {
       if (event.target === lightbox || event.target === close) {
