@@ -2582,7 +2582,7 @@ h6.lp-header-title-6 {
 }
 
 
-/*Старая версия для слабовидящих https://staff.megagroup.ru/staff/sites/?site_id=1085232*/
+/* Legacy accessibility mode styles */
 [data-set-size='normal-size'] .lpc-wrap p,
 [data-set-size='normal-size'] .lpc-wrap .lp-header-text-1,
 [data-set-size='normal-size'] .lpc-wrap .lp-header-text-2,
@@ -2622,7 +2622,7 @@ body[image="hide"] .lpc-block__img-inner {
     display: none;
 }
 
-/*Старая версия для слабовидящих https://staff.megagroup.ru/staff/sites/?site_id=1085232*/
+/* Legacy accessibility mode styles */
 
 /*ymaps*/
 ymaps .baloon-content h1,
@@ -3951,7 +3951,7 @@ div.modal {z-index: 1002 !important;}
 /* НЕ УДАЛЯТЬ - это новогоднее оформление */
 
 
-/*стили для таблиц https://megagroup.fibery.io/S3/Task/4029/comment=32803*/
+/* Table styles */
 .decor-wrap .table {
   margin: 0.9em auto;
   display: inline-block;
@@ -4007,7 +4007,7 @@ div.modal {z-index: 1002 !important;}
 .decor-wrap [data-elem-type="header"] {
   display: flow-root;
 }*/
-/*стили для таблиц https://megagroup.fibery.io/S3/Task/4029/comment=32803*/
+/* Table styles */
 
 
 

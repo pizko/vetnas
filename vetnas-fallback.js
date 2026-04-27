@@ -221,6 +221,62 @@
     });
   }
 
+  function setupImageZoom() {
+    var lightbox = document.createElement("div");
+    var image = document.createElement("img");
+    var close = document.createElement("button");
+
+    lightbox.className = "vetnas-lightbox";
+    close.className = "vetnas-lightbox__close";
+    close.type = "button";
+    close.setAttribute("aria-label", "Закрыть");
+    close.textContent = "×";
+
+    lightbox.appendChild(image);
+    lightbox.appendChild(close);
+    document.body.appendChild(lightbox);
+
+    function closeLightbox() {
+      lightbox.classList.remove("is-open");
+      image.removeAttribute("src");
+      image.removeAttribute("alt");
+    }
+
+    document.addEventListener("click", function (event) {
+      var holder = closest(event.target, "[data-do-image]");
+      if (!holder) {
+        return;
+      }
+
+      var config = getScreenConfig(parseData(holder, "data-do-image"));
+      if (!config.zoomOnClick) {
+        return;
+      }
+
+      var img = holder.querySelector("img");
+      if (!img) {
+        return;
+      }
+
+      event.preventDefault();
+      image.src = img.currentSrc || img.src;
+      image.alt = img.alt || "";
+      lightbox.classList.add("is-open");
+    });
+
+    lightbox.addEventListener("click", function (event) {
+      if (event.target === lightbox || event.target === close) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeLightbox();
+      }
+    });
+  }
+
   ready(function () {
     setupPanel();
     setupDropdowns();
@@ -228,5 +284,6 @@
     setupAnimations();
     setupMaps();
     setupStaticForms();
+    setupImageZoom();
   });
 })();

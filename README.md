@@ -1,6 +1,6 @@
 # Vetnasvyaz Static Site
 
-Static baseline export of the former MegaGroup site for `vetnasvyaz.ru`.
+Static baseline export of the former CMS site for `vetnasvyaz.ru`.
 
 ## Current State
 
@@ -8,8 +8,8 @@ This first version is a legacy static snapshot. It is intentionally kept close t
 
 Known issues:
 
-- MegaGroup-generated HTML/CSS/JS is still present.
-- Old form handlers do not work without the MegaGroup backend.
+- Legacy generated HTML/CSS/JS is still present.
+- Old form handlers do not work without the former CMS backend.
 - Some links use legacy filenames like `index.html.1.html` and `users@mode=agreement.html`.
 - CSS and JS are duplicated and need to be rebuilt, not just concatenated.
 - External counters and widgets should be reviewed before production.
@@ -17,4 +17,3 @@ Known issues:
 ## Migration Goal
 
 Build a clean static site with shared layouts, normalized assets, one curated CSS bundle, one minimal JS file, working forms, sitemap, robots, and redirects from legacy URLs.
-

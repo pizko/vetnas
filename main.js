@@ -2217,7 +2217,7 @@
 			setTimeout(function(){
 				document.dispatchEvent(adaptiveBlockEvent);
 			}, 100);
-	  }); // исправление переключение цвета в старой версии для слабовидящих https://staff.megagroup.ru/staff/sites/?site_id=1085232
+	  }); // Fix color switching in the accessibility mode.
   }
 
   checkMediaSource = function(media) {
