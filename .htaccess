@@ -1,15 +1,17 @@
 Options -MultiViews
+DirectoryIndex index.html
 RewriteEngine On
 
-# index.html -> /
-RewriteRule ^index\.html$ / [R=301,L,NC]
+# /index.html -> /
+RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L]
 
-# /page -> /page.html, если файл существует
+# /page.html -> /page
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+RewriteRule ^(.+)\.html$ /$1 [R=301,L]
+
+# /page -> /page.html if the file exists
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{DOCUMENT_ROOT}/$1.html -f
-RewriteRule ^([A-Za-z0-9/_-]+)$ $1.html [L]
-
-# /page.html -> /page
-RewriteCond %{THE_REQUEST} \s/([^.?\s]+)\.html[\s?] [NC]
-RewriteRule ^([A-Za-z0-9/_-]+)\.html$ /$1 [R=301,L]
+RewriteRule ^(.+?)/?$ $1.html [L]

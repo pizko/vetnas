@@ -27,12 +27,13 @@
 
   function setupPageClass() {
     var page = window.location.pathname.split("/").pop() || "index.html";
+    page = page.replace(/\.html$/i, "");
 
-    if (/^(novosti|[123])\.html$/.test(page)) {
+    if (/^(novosti|[123])$/.test(page)) {
       document.body.classList.add("vetnas-page-news");
     }
 
-    if (page === "uslugi-i-tseny.html") {
+    if (page === "uslugi-i-tseny") {
       document.body.classList.add("vetnas-page-services");
     }
 

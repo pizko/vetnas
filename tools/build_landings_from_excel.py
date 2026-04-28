@@ -264,11 +264,10 @@ def cards_html(value: str, title: str) -> str:
             "</article>"
         )
     return (
-        "<section class=\"vetnas-landing-block\">"
+        "<section class=\"vetnas-landing-cards\">"
         f"<h2>{html.escape(title)}</h2>"
-        "<div class=\"vetnas-landing-grid\">"
         + "".join(cards)
-        + "</div></section>"
+        + "</section>"
     )
 
 
