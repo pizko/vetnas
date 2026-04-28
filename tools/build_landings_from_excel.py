@@ -441,7 +441,7 @@ def write_sitemap(output_dir: Path, site_url: str) -> None:
     today = date.today().isoformat()
     urls = []
     for path in sorted(output_dir.glob("*.html")):
-        if path.name in {"landing-template.html", "landings.html"}:
+        if path.name in {"landing-template.html", "landings.html", "index-skolkovo.html"}:
             continue
         loc = base + path.name
         urls.append(f"  <url><loc>{html.escape(loc)}</loc><lastmod>{today}</lastmod></url>")
