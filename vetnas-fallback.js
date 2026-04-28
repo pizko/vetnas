@@ -25,6 +25,22 @@
     return data.screen || data["(max-width: 991px)"] || {};
   }
 
+  function setupPageClass() {
+    var page = window.location.pathname.split("/").pop() || "index.html";
+
+    if (/^(novosti|[123])\.html$/.test(page)) {
+      document.body.classList.add("vetnas-page-news");
+    }
+
+    if (page === "uslugi-i-tseny.html") {
+      document.body.classList.add("vetnas-page-services");
+    }
+
+    document.querySelectorAll(".localaboutus__price-title, .localaboutus__price").forEach(function (element) {
+      element.remove();
+    });
+  }
+
   function openPanel() {
     document.body.classList.add("vetnas-panel-open");
   }
@@ -281,6 +297,7 @@
   }
 
   ready(function () {
+    setupPageClass();
     setupPanel();
     setupDropdowns();
     setupPopupButtons();

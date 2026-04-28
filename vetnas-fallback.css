@@ -136,3 +136,208 @@ body.vetnas-panel-open [class*="side-panel__content"] {
   font-size: 30px;
   line-height: 44px;
 }
+
+.vetnas-page-news,
+.vetnas-page-services {
+  background: #f5f8f3;
+}
+
+.vetnas-page-news .g-page-article--main,
+.vetnas-page-services [data-do-content] {
+  max-width: 1160px;
+  margin: 0 auto 34px;
+}
+
+.vetnas-page-news .g-article-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 8px 0 32px;
+}
+
+.vetnas-page-news .g-article {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  margin: 0 !important;
+  border: 1px solid rgba(35, 89, 61, 0.1);
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 18px 45px rgba(36, 74, 52, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.vetnas-page-news .g-article:hover {
+  transform: translateY(-5px);
+  border-color: rgba(35, 148, 94, 0.28);
+  box-shadow: 0 24px 60px rgba(36, 74, 52, 0.16);
+}
+
+.vetnas-page-news .g-article__name {
+  order: 2;
+  display: block;
+  padding: 18px 20px 8px;
+  color: #153c28 !important;
+  font: 700 20px/1.22 Montserrat, Open Sans, sans-serif;
+  text-decoration: none;
+}
+
+.vetnas-page-news .g-article__body {
+  display: contents;
+}
+
+.vetnas-page-news .g-article__image {
+  order: 1;
+  float: none !important;
+  width: 100% !important;
+  height: 210px;
+  margin: 0 !important;
+  background: linear-gradient(135deg, #dcefe4, #f6fbf8);
+}
+
+.vetnas-page-news .g-article__image a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.vetnas-page-news .g-article__image img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.vetnas-page-news .g-article:hover .g-article__image img {
+  transform: scale(1.045);
+}
+
+.vetnas-page-news .g-article__text {
+  order: 3;
+  padding: 0 20px 22px;
+  color: #5f7068;
+  font: 400 15px/1.55 Open Sans, sans-serif;
+}
+
+.vetnas-page-news .g-article__text:empty::after {
+  content: "Материал клиники Ветеринар на связи";
+}
+
+.vetnas-page-news .g-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 24px 0 46px;
+}
+
+.vetnas-page-news .g-pagination__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  height: 42px;
+  padding: 0 14px;
+  border: 1px solid rgba(35, 89, 61, 0.14);
+  border-radius: 999px;
+  background: #fff;
+  color: #24583d;
+  text-decoration: none;
+  box-shadow: 0 10px 24px rgba(36, 74, 52, 0.08);
+}
+
+.vetnas-page-news .g-pagination__item--active,
+.vetnas-page-news .g-pagination__item:hover {
+  background: #2f8f60;
+  color: #fff;
+}
+
+.vetnas-page-services .g-submenu {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  padding: 0 !important;
+  margin: 0 0 36px !important;
+  list-style: none !important;
+}
+
+.vetnas-page-services .g-submenu:not(.g-submenu--top) {
+  display: none !important;
+}
+
+.vetnas-page-services .g-submenu__item {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.vetnas-page-services .g-button,
+.vetnas-page-services .g-submenu__item a {
+  position: relative;
+  display: flex !important;
+  min-height: 116px;
+  align-items: flex-end;
+  padding: 22px 22px 20px !important;
+  border: 1px solid rgba(35, 89, 61, 0.12) !important;
+  border-radius: 24px !important;
+  background: linear-gradient(145deg, #ffffff 0%, #edf8f1 100%) !important;
+  color: #173d29 !important;
+  font: 700 18px/1.25 Montserrat, Open Sans, sans-serif !important;
+  text-decoration: none !important;
+  box-shadow: 0 18px 45px rgba(36, 74, 52, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.vetnas-page-services .g-button::before,
+.vetnas-page-services .g-submenu__item a::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #2f8f60;
+  box-shadow: inset 0 0 0 10px rgba(255, 255, 255, 0.18);
+}
+
+.vetnas-page-services .g-button::after,
+.vetnas-page-services .g-submenu__item a::after {
+  content: "→";
+  position: absolute;
+  top: 22px;
+  right: 31px;
+  color: #fff;
+  font: 700 20px/1 Montserrat, Open Sans, sans-serif;
+}
+
+.vetnas-page-services .g-button:hover,
+.vetnas-page-services .g-submenu__item a:hover {
+  transform: translateY(-5px);
+  border-color: rgba(35, 148, 94, 0.28) !important;
+  box-shadow: 0 24px 60px rgba(36, 74, 52, 0.16);
+}
+
+.localaboutus__price-title,
+.localaboutus__price {
+  display: none !important;
+}
+
+@media (max-width: 991px) {
+  .vetnas-page-news .g-article-list,
+  .vetnas-page-services .g-submenu {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .vetnas-page-news .g-article-list,
+  .vetnas-page-services .g-submenu {
+    grid-template-columns: 1fr;
+  }
+
+  .vetnas-page-news .g-article__image {
+    height: 230px;
+  }
+}
