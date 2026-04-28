@@ -45,8 +45,8 @@ body.vetnas-concept {
 
 .concept-nav {
   display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 28px;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 22px;
   align-items: center;
   min-height: 88px;
 }
@@ -79,14 +79,25 @@ body.vetnas-concept {
 .concept-menu {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 8px;
   justify-content: center;
 }
 
 .concept-menu a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 12px;
+  border-radius: 999px;
   color: var(--royal);
   font: 700 14px/1 Montserrat, "Open Sans", sans-serif;
   text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.concept-menu a:hover {
+  background: rgba(0, 153, 214, 0.1);
+  color: var(--sky);
 }
 
 .concept-phone {
@@ -315,7 +326,7 @@ body.vetnas-concept {
 .concept-stat strong {
   display: block;
   color: var(--royal);
-  font: 900 30px/1 Montserrat, "Open Sans", sans-serif;
+  font: 900 22px/1.15 Montserrat, "Open Sans", sans-serif;
 }
 
 .concept-stat span {
@@ -596,6 +607,15 @@ body.vetnas-concept {
   }
 
   .concept-menu {
+    display: flex;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+  }
+
+  .concept-menu::-webkit-scrollbar {
     display: none;
   }
 
