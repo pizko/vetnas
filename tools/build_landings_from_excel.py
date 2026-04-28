@@ -450,9 +450,16 @@ def write_sitemap(output_dir: Path, site_url: str) -> None:
         + "\n".join(urls)
         + "\n</urlset>\n"
     )
+    sitemap_php = (
+        "<?php\n"
+        "header('Content-Type: application/xml; charset=UTF-8');\n"
+        "echo <<<'XML'\n"
+        + sitemap
+        + "XML;\n"
+    )
     output_dir.joinpath("sitemap.xml").write_text(sitemap, encoding="utf-8")
-    output_dir.joinpath("sitemap.php").write_text(sitemap, encoding="utf-8")
-    output_dir.joinpath("robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {base}sitemap.php\n", encoding="utf-8")
+    output_dir.joinpath("sitemap.php").write_text(sitemap_php, encoding="utf-8")
+    output_dir.joinpath("robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {base}sitemap.xml\n", encoding="utf-8")
 
 
 def build(

@@ -1,3 +1,6 @@
+<?php
+header('Content-Type: application/xml; charset=UTF-8');
+echo <<<'XML'
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://vetnasvyaz.ru/1</loc><lastmod>2026-04-28</lastmod></url>
@@ -234,3 +237,4 @@
   <url><loc>https://vetnasvyaz.ru/zapor-u-sobaki-ramenskoe</loc><lastmod>2026-04-28</lastmod></url>
   <url><loc>https://vetnasvyaz.ru/zud-u-sobaki-ramenskoe</loc><lastmod>2026-04-28</lastmod></url>
 </urlset>
+XML;
