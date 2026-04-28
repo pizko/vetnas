@@ -358,9 +358,174 @@ body.vetnas-panel-open [class*="side-panel__content"] {
   display: none !important;
 }
 
+.vetnas-landing-content {
+  padding: 56px 20px 72px;
+  background:
+    radial-gradient(circle at 8% 10%, rgba(17, 85, 204, 0.09), transparent 26%),
+    linear-gradient(180deg, #f7f9fd 0%, #ffffff 42%, #f7f9fd 100%);
+}
+
+.vetnas-landing-inner {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.vetnas-landing-block,
+.vetnas-landing-cta {
+  margin: 0 0 28px;
+  padding: 30px;
+  border: 1px solid rgba(17, 85, 204, 0.12);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 22px 55px rgba(17, 85, 204, 0.08);
+}
+
+.vetnas-landing-block h2,
+.vetnas-landing-block h3,
+.vetnas-landing-cta h2 {
+  margin: 0 0 16px;
+  color: #12305f;
+  font-family: Montserrat, Open Sans, sans-serif;
+  line-height: 1.2;
+}
+
+.vetnas-landing-block h2,
+.vetnas-landing-cta h2 {
+  font-size: clamp(24px, 3vw, 34px);
+}
+
+.vetnas-landing-block h3 {
+  margin-top: 22px;
+  font-size: 20px;
+}
+
+.vetnas-landing-block p,
+.vetnas-landing-block li,
+.vetnas-landing-cta p {
+  color: #2f3f58;
+  font-family: Open Sans, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.72;
+}
+
+.vetnas-landing-block ul {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vetnas-landing-block li {
+  position: relative;
+  padding-left: 28px;
+}
+
+.vetnas-landing-block li::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #1155cc;
+  box-shadow: 0 0 0 5px rgba(17, 85, 204, 0.12);
+}
+
+.vetnas-landing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin: 26px 0 28px;
+}
+
+.vetnas-landing-card {
+  padding: 24px;
+  border: 1px solid rgba(17, 85, 204, 0.12);
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 16px 40px rgba(18, 48, 95, 0.07);
+}
+
+.vetnas-landing-card h3 {
+  margin: 0 0 10px;
+  color: #12305f;
+  font: 700 19px/1.25 Montserrat, Open Sans, sans-serif;
+}
+
+.vetnas-landing-card p {
+  margin: 0;
+  color: #4d5c72;
+  font: 400 16px/1.62 Open Sans, Arial, sans-serif;
+}
+
+.vetnas-landing-cta {
+  display: grid;
+  gap: 18px;
+  align-items: center;
+  background: linear-gradient(135deg, #12305f 0%, #1155cc 100%);
+}
+
+.vetnas-landing-cta h2,
+.vetnas-landing-cta p {
+  color: #fff;
+}
+
+.vetnas-landing-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: start;
+  min-height: 48px;
+  padding: 13px 22px;
+  border-radius: 999px;
+  background: #fff;
+  color: #1155cc;
+  font: 700 15px/1 Montserrat, Open Sans, sans-serif;
+  text-decoration: none;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+}
+
+.vetnas-landing-links {
+  display: block;
+}
+
+.vetnas-landing-links ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+  padding: 0;
+  list-style: none;
+}
+
+.vetnas-landing-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid rgba(17, 85, 204, 0.18);
+  border-radius: 999px;
+  background: #fff;
+  color: #1155cc;
+  font: 700 14px/1.2 Montserrat, Open Sans, sans-serif;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vetnas-landing-links a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(17, 85, 204, 0.13);
+}
+
 @media (max-width: 991px) {
   .vetnas-page-news .g-article-list,
   .vetnas-page-services .g-submenu {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .vetnas-landing-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -373,5 +538,20 @@ body.vetnas-panel-open [class*="side-panel__content"] {
 
   .vetnas-page-news .g-article__image {
     height: 230px;
+  }
+
+  .vetnas-landing-content {
+    padding: 34px 14px 46px;
+  }
+
+  .vetnas-landing-block,
+  .vetnas-landing-cta,
+  .vetnas-landing-card {
+    padding: 22px;
+    border-radius: 22px;
+  }
+
+  .vetnas-landing-grid {
+    grid-template-columns: 1fr;
   }
 }
