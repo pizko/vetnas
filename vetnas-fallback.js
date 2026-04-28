@@ -296,8 +296,172 @@
     });
   }
 
+  function cleanText(value) {
+    return String(value || "").replace(/\s+/g, " ").trim();
+  }
+
+  function getPageTitle() {
+    var heading = document.querySelector("h1, .page-title, .g-page-article__name");
+    var title = cleanText(heading ? heading.textContent : "");
+    if (!title || title.toUpperCase() === "ГЛАВНАЯ") {
+      title = cleanText(document.title).replace(/\s*[-|]\s*.*$/, "");
+    }
+    return title || "Ветеринар на связи";
+  }
+
+  function getMetaContent(name) {
+    var meta = document.querySelector('meta[name="' + name + '"]');
+    return cleanText(meta ? meta.getAttribute("content") : "");
+  }
+
+  function addJsonLd(data) {
+    var script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.text = JSON.stringify(data);
+    document.head.appendChild(script);
+  }
+
+  function getSiteHomeUrl(url) {
+    var current = new URL(url);
+    var parts = current.pathname.split("/").filter(Boolean);
+    var basePath = parts[0] === "vetnas" ? "/vetnas/" : "/";
+    return current.origin + basePath;
+  }
+
+  function getBreadcrumbs(url, homeUrl, title) {
+    var links = Array.prototype.slice.call(document.querySelectorAll(".mosaic-crumbs a, .breadcrumb a"));
+    var items = links.map(function (link, index) {
+      return {
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": cleanText(link.textContent) || "Главная",
+        "item": new URL(link.getAttribute("href") || "./", url).href
+      };
+    }).filter(function (item) {
+      return item.name;
+    });
+
+    if (!items.length) {
+      items.push({
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Главная",
+        "item": homeUrl
+      });
+    }
+
+    if (items[items.length - 1].item !== url) {
+      items.push({
+        "@type": "ListItem",
+        "position": items.length + 1,
+        "name": title,
+        "item": url
+      });
+    }
+
+    return items;
+  }
+
+  function setupStructuredData() {
+    var url = window.location.href.split("#")[0];
+    var homeUrl = getSiteHomeUrl(url);
+    var page = window.location.pathname.split("/").pop() || "index.html";
+    var title = getPageTitle();
+    var description = getMetaContent("description") || "Ветеринарная клиника экстренной помощи в городе Раменское.";
+    var isNewsPage = page === "novosti.html" || window.location.pathname.indexOf("/news/") !== -1 || document.querySelector(".g-page-article__body");
+    var isServiceIndex = page === "uslugi-i-tseny.html";
+
+    var graph = [
+      {
+        "@type": "VeterinaryCare",
+        "@id": homeUrl + "#clinic",
+        "name": "Ветеринар на связи",
+        "url": homeUrl,
+        "telephone": "+7-495-144-48-03",
+        "email": "vetnasvyaz@mail.ru",
+        "image": new URL("favicon.png", homeUrl).href,
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "RU",
+          "addressRegion": "Московская область",
+          "addressLocality": "Раменское",
+          "streetAddress": "ул. Красноармейская, д. 13"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 55.572556,
+          "longitude": 38.233634
+        },
+        "areaServed": "Раменское"
+      },
+      {
+        "@type": "WebSite",
+        "@id": homeUrl + "#website",
+        "name": "Ветеринар на связи",
+        "url": homeUrl,
+        "publisher": {
+          "@id": homeUrl + "#clinic"
+        },
+        "inLanguage": "ru-RU"
+      },
+      {
+        "@type": "WebPage",
+        "@id": url + "#webpage",
+        "url": url,
+        "name": title,
+        "description": description,
+        "isPartOf": {
+          "@id": homeUrl + "#website"
+        },
+        "about": {
+          "@id": homeUrl + "#clinic"
+        },
+        "inLanguage": "ru-RU"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": url + "#breadcrumbs",
+        "itemListElement": getBreadcrumbs(url, homeUrl, title)
+      }
+    ];
+
+    if (isNewsPage && page !== "novosti.html") {
+      graph.push({
+        "@type": "Article",
+        "@id": url + "#article",
+        "headline": title,
+        "description": description,
+        "mainEntityOfPage": {
+          "@id": url + "#webpage"
+        },
+        "publisher": {
+          "@id": homeUrl + "#clinic"
+        },
+        "inLanguage": "ru-RU"
+      });
+    } else if (!isServiceIndex && page !== "index.html") {
+      graph.push({
+        "@type": "Service",
+        "@id": url + "#service",
+        "name": title,
+        "description": description,
+        "provider": {
+          "@id": homeUrl + "#clinic"
+        },
+        "areaServed": "Раменское",
+        "serviceType": "Ветеринарная услуга"
+      });
+    }
+
+    addJsonLd({
+      "@context": "https://schema.org",
+      "@graph": graph
+    });
+  }
+
   ready(function () {
     setupPageClass();
+    setupStructuredData();
     setupPanel();
     setupDropdowns();
     setupPopupButtons();

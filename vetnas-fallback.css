@@ -69,8 +69,8 @@ body.vetnas-panel-open [class*="side-panel__content"] {
   margin-top: 12px;
   padding: 12px 14px;
   border-radius: 10px;
-  background: #e9fff0;
-  color: #175b2c;
+  background: #e7eefa;
+  color: #1f2f4f;
   font-size: 15px;
   line-height: 1.35;
 }
@@ -139,7 +139,7 @@ body.vetnas-panel-open [class*="side-panel__content"] {
 
 .vetnas-page-news,
 .vetnas-page-services {
-  background: #f5f8f3;
+  background: #f6f8fc;
 }
 
 .vetnas-page-news .g-page-article--main,
@@ -162,24 +162,24 @@ body.vetnas-panel-open [class*="side-panel__content"] {
   flex-direction: column;
   min-height: 100%;
   margin: 0 !important;
-  border: 1px solid rgba(35, 89, 61, 0.1);
+  border: 1px solid rgba(17, 85, 204, 0.1);
   border-radius: 24px;
   background: #fff;
-  box-shadow: 0 18px 45px rgba(36, 74, 52, 0.1);
+  box-shadow: 0 18px 45px rgba(17, 85, 204, 0.09);
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .vetnas-page-news .g-article:hover {
   transform: translateY(-5px);
-  border-color: rgba(35, 148, 94, 0.28);
-  box-shadow: 0 24px 60px rgba(36, 74, 52, 0.16);
+  border-color: rgba(17, 85, 204, 0.28);
+  box-shadow: 0 24px 60px rgba(17, 85, 204, 0.14);
 }
 
 .vetnas-page-news .g-article__name {
   order: 2;
   display: block;
   padding: 18px 20px 8px;
-  color: #153c28 !important;
+  color: #1f2f4f !important;
   font: 700 20px/1.22 Montserrat, Open Sans, sans-serif;
   text-decoration: none;
 }
@@ -194,7 +194,7 @@ body.vetnas-panel-open [class*="side-panel__content"] {
   width: 100% !important;
   height: 210px;
   margin: 0 !important;
-  background: linear-gradient(135deg, #dcefe4, #f6fbf8);
+  background: linear-gradient(135deg, #e7eefa, #f7f9fd);
 }
 
 .vetnas-page-news .g-article__image a {
@@ -218,7 +218,7 @@ body.vetnas-panel-open [class*="side-panel__content"] {
 .vetnas-page-news .g-article__text {
   order: 3;
   padding: 0 20px 22px;
-  color: #5f7068;
+  color: #5f6675;
   font: 400 15px/1.55 Open Sans, sans-serif;
 }
 
@@ -240,17 +240,17 @@ body.vetnas-panel-open [class*="side-panel__content"] {
   min-width: 42px;
   height: 42px;
   padding: 0 14px;
-  border: 1px solid rgba(35, 89, 61, 0.14);
+  border: 1px solid rgba(17, 85, 204, 0.14);
   border-radius: 999px;
   background: #fff;
-  color: #24583d;
+  color: #1155cc;
   text-decoration: none;
-  box-shadow: 0 10px 24px rgba(36, 74, 52, 0.08);
+  box-shadow: 0 10px 24px rgba(17, 85, 204, 0.08);
 }
 
 .vetnas-page-news .g-pagination__item--active,
 .vetnas-page-news .g-pagination__item:hover {
-  background: #2f8f60;
+  background: #1155cc;
   color: #fff;
 }
 
@@ -279,13 +279,13 @@ body.vetnas-panel-open [class*="side-panel__content"] {
   min-height: 116px;
   align-items: flex-end;
   padding: 22px 22px 20px !important;
-  border: 1px solid rgba(35, 89, 61, 0.12) !important;
+  border: 1px solid rgba(17, 85, 204, 0.12) !important;
   border-radius: 24px !important;
-  background: linear-gradient(145deg, #ffffff 0%, #edf8f1 100%) !important;
-  color: #173d29 !important;
+  background: linear-gradient(145deg, #ffffff 0%, #edf3ff 100%) !important;
+  color: #1f2f4f !important;
   font: 700 18px/1.25 Montserrat, Open Sans, sans-serif !important;
   text-decoration: none !important;
-  box-shadow: 0 18px 45px rgba(36, 74, 52, 0.1);
+  box-shadow: 0 18px 45px rgba(17, 85, 204, 0.1);
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
@@ -298,7 +298,7 @@ body.vetnas-panel-open [class*="side-panel__content"] {
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: #2f8f60;
+  background: #1155cc;
   box-shadow: inset 0 0 0 10px rgba(255, 255, 255, 0.18);
 }
 
@@ -315,8 +315,42 @@ body.vetnas-panel-open [class*="side-panel__content"] {
 .vetnas-page-services .g-button:hover,
 .vetnas-page-services .g-submenu__item a:hover {
   transform: translateY(-5px);
-  border-color: rgba(35, 148, 94, 0.28) !important;
-  box-shadow: 0 24px 60px rgba(36, 74, 52, 0.16);
+  border-color: rgba(17, 85, 204, 0.28) !important;
+  box-shadow: 0 24px 60px rgba(17, 85, 204, 0.16);
+}
+
+[data-do-content] table {
+  width: 100% !important;
+  margin: 24px 0 34px !important;
+  overflow: hidden;
+  border: 1px solid rgba(17, 85, 204, 0.12) !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 18px 45px rgba(17, 85, 204, 0.09);
+}
+
+[data-do-content] table td,
+[data-do-content] table th {
+  padding: 15px 18px !important;
+  border-color: rgba(17, 85, 204, 0.1) !important;
+  background: #fff !important;
+  color: #2f2f2f !important;
+  font-family: Open Sans, Arial, sans-serif !important;
+  font-size: 16px !important;
+  line-height: 1.45 !important;
+}
+
+[data-do-content] table tr:nth-child(even) td {
+  background: #f7f9fd !important;
+}
+
+[data-do-content] table td:last-child {
+  color: #1155cc !important;
+  font-weight: 700 !important;
+  text-align: right !important;
+  white-space: nowrap;
 }
 
 .localaboutus__price-title,
