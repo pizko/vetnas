@@ -6,4 +6,5 @@ dist/
 *.log
 *.tmp
 *.bak
+veterinar.xlsx
 data/*.xlsx
