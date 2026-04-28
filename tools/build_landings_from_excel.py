@@ -441,7 +441,7 @@ def write_sitemap(output_dir: Path, site_url: str) -> None:
     today = date.today().isoformat()
     urls = []
     for path in sorted(output_dir.glob("*.html")):
-        if path.name == "landing-template.html":
+        if path.name in {"landing-template.html", "landings.html"}:
             continue
         loc = base + path.name
         urls.append(f"  <url><loc>{html.escape(loc)}</loc><lastmod>{today}</lastmod></url>")
@@ -452,7 +452,8 @@ def write_sitemap(output_dir: Path, site_url: str) -> None:
         + "\n</urlset>\n"
     )
     output_dir.joinpath("sitemap.xml").write_text(sitemap, encoding="utf-8")
-    output_dir.joinpath("robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {base}sitemap.xml\n", encoding="utf-8")
+    output_dir.joinpath("sitemap.php").write_text(sitemap, encoding="utf-8")
+    output_dir.joinpath("robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {base}sitemap.php\n", encoding="utf-8")
 
 
 def build(
