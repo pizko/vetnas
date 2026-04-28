@@ -324,9 +324,7 @@
 
   function getSiteHomeUrl(url) {
     var current = new URL(url);
-    var parts = current.pathname.split("/").filter(Boolean);
-    var basePath = parts[0] === "vetnas" ? "/vetnas/" : "/";
-    return current.origin + basePath;
+    return current.origin + "/";
   }
 
   function getBreadcrumbs(url, homeUrl, title) {

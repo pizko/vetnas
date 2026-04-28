@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_TEMPLATE = ROOT / "landing-template.html"
 DEFAULT_INPUT = ROOT / "data" / "veterinar.xlsx"
 DEFAULT_OUTPUT = ROOT
-DEFAULT_SITE_URL = "https://pizko.github.io/vetnas/"
+DEFAULT_SITE_URL = "https://vetnasvyaz.ru/"
 
 EXPECTED_COLUMNS = [
     "slug",
@@ -415,7 +415,7 @@ def write_landing_index(output_dir: Path, pages: list[tuple[str, str]]) -> None:
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Посадочные страницы | Ветеринар на связи</title>
   <meta name="robots" content="noindex,follow">
-  <link rel="stylesheet" href="vetnas-fallback.css">
+  <link rel="stylesheet" href="/vetnas-fallback.css?v=20260428-2">
 </head>
 <body>
   <main class="vetnas-landing-content">
@@ -442,7 +442,7 @@ def write_sitemap(output_dir: Path, site_url: str) -> None:
     for path in sorted(output_dir.glob("*.html")):
         if path.name in {"landing-template.html", "landings.html", "index-skolkovo.html"}:
             continue
-        loc = base + path.name
+        loc = base if path.name == "index.html" else base + path.stem
         urls.append(f"  <url><loc>{html.escape(loc)}</loc><lastmod>{today}</lastmod></url>")
     sitemap = (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
