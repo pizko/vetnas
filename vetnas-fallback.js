@@ -220,6 +220,25 @@
   }
 
   function setupStaticForms() {
+    function setFormMessage(form, text, isError) {
+      var message = form.querySelector(".vetnas-form-message");
+      if (!message) {
+        message = document.createElement("div");
+        message.className = "vetnas-form-message";
+        form.appendChild(message);
+      }
+      message.textContent = text;
+      message.hidden = false;
+      message.style.background = isError ? "#ffe8e8" : "#e7eefa";
+      message.style.color = isError ? "#721c24" : "#1f2f4f";
+    }
+
+    function fieldLabel(field, input) {
+      var label = field.querySelector(".mosaic-form__name, .mosaic-form__title");
+      var text = cleanText(label ? label.textContent : "");
+      return text || input.getAttribute("placeholder") || input.getAttribute("name") || input.id || "Поле";
+    }
+
     document.addEventListener("submit", function (event) {
       var form = event.target;
       if (!form || !form.classList || !form.classList.contains("mosaic-form__form")) {
@@ -227,14 +246,68 @@
       }
 
       event.preventDefault();
-      var message = form.querySelector(".vetnas-form-message");
-      if (!message) {
-        message = document.createElement("div");
-        message.className = "vetnas-form-message";
-        message.textContent = "Спасибо! Заявка визуально принята. Для реальной отправки формы нужно подключить обработчик или внешний сервис.";
-        form.appendChild(message);
+      var submit = form.querySelector("button[type='submit'], button");
+      var values = {};
+      var hasContact = false;
+
+      form.querySelectorAll("input, textarea, select").forEach(function (input) {
+        if (input.type === "hidden" || input.type === "submit" || input.type === "button") {
+          return;
+        }
+        if ((input.type === "checkbox" || input.type === "radio") && !input.checked) {
+          return;
+        }
+
+        var value = cleanText(input.value);
+        if (!value) {
+          return;
+        }
+
+        if (input.type === "tel" || /phone|тел/i.test(input.placeholder || "")) {
+          hasContact = true;
+        }
+
+        values[fieldLabel(closest(input, ".mosaic-form__field") || form, input)] = value;
+      });
+
+      if (!hasContact) {
+        setFormMessage(form, "Укажите телефон, чтобы мы могли связаться с вами.", true);
+        return;
       }
-      message.hidden = false;
+
+      if (submit) {
+        submit.disabled = true;
+      }
+      setFormMessage(form, "Отправляем заявку...", false);
+
+      fetch("/send.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          page: window.location.href,
+          title: document.title,
+          form: cleanText((form.querySelector(".mosaic-form__title") || {}).textContent || "Форма сайта"),
+          fields: values
+        })
+      }).then(function (response) {
+        return response.json().catch(function () {
+          return { ok: false };
+        });
+      }).then(function (result) {
+        if (!result.ok) {
+          throw new Error(result.error || "send failed");
+        }
+        setFormMessage(form, "Спасибо! Заявка отправлена.", false);
+        form.reset();
+      }).catch(function () {
+        setFormMessage(form, "Не получилось отправить заявку. Позвоните нам: +7 (495) 144-48-03.", true);
+      }).finally(function () {
+        if (submit) {
+          submit.disabled = false;
+        }
+      });
     });
   }
 
