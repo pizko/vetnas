@@ -39,6 +39,7 @@ $lines = [
 ];
 
 $hasContact = false;
+$hasPayload = false;
 foreach ($fields as $name => $value) {
     $name = trim(strip_tags((string)$name));
     $value = trim(strip_tags((string)$value));
@@ -47,17 +48,24 @@ foreach ($fields as $name => $value) {
         continue;
     }
 
-    if (preg_match('/тел|phone|номер/i', $name . ' ' . $value)) {
+    $hasPayload = true;
+    $digits = preg_replace('/\D+/', '', $value);
+    if (preg_match('/[Тт]ел|phone|номер/u', $name) || strlen($digits) >= 7) {
         $hasContact = true;
     }
 
     $lines[] = $name . ': ' . $value;
 }
 
-if (!$hasContact) {
+if (!$hasPayload) {
     http_response_code(422);
-    echo json_encode(['ok' => false, 'error' => 'phone_required'], JSON_UNESCAPED_UNICODE);
+    echo json_encode(['ok' => false, 'error' => 'empty_form'], JSON_UNESCAPED_UNICODE);
     exit;
+}
+
+if (!$hasContact) {
+    $lines[] = '';
+    $lines[] = 'Внимание: телефон в заявке не распознан автоматически.';
 }
 
 $message = implode("\n", $lines);

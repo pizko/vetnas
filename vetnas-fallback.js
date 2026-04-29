@@ -239,13 +239,7 @@
       return text || input.getAttribute("placeholder") || input.getAttribute("name") || input.id || "Поле";
     }
 
-    document.addEventListener("submit", function (event) {
-      var form = event.target;
-      if (!form || !form.classList || !form.classList.contains("mosaic-form__form")) {
-        return;
-      }
-
-      event.preventDefault();
+    function sendForm(form) {
       var submit = form.querySelector("button[type='submit'], button");
       var values = {};
       var hasContact = false;
@@ -263,11 +257,18 @@
           return;
         }
 
-        if (input.type === "tel" || /phone|тел/i.test(input.placeholder || "")) {
+        var field = closest(input, ".mosaic-form__field") || form;
+        var label = fieldLabel(field, input);
+        if (
+          input.type === "tel" ||
+          /phone|тел/i.test(input.placeholder || "") ||
+          /phone|тел/i.test(label) ||
+          field.getAttribute("data-type-field") === "phone"
+        ) {
           hasContact = true;
         }
 
-        values[fieldLabel(closest(input, ".mosaic-form__field") || form, input)] = value;
+        values[label] = value;
       });
 
       if (!hasContact) {
@@ -308,7 +309,30 @@
           submit.disabled = false;
         }
       });
-    });
+    }
+
+    document.addEventListener("submit", function (event) {
+      var form = event.target;
+      if (!form || !form.classList || !form.classList.contains("mosaic-form__form")) {
+        return;
+      }
+
+      event.preventDefault();
+      event.stopPropagation();
+      sendForm(form);
+    }, true);
+
+    document.addEventListener("click", function (event) {
+      var button = closest(event.target, ".mosaic-form__button");
+      var form = button ? closest(button, "form.mosaic-form__form") : null;
+      if (!form) {
+        return;
+      }
+
+      event.preventDefault();
+      event.stopPropagation();
+      sendForm(form);
+    }, true);
   }
 
   function setupImageZoom() {
