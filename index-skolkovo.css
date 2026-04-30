@@ -563,6 +563,26 @@ body.vetnas-concept {
   color: var(--sun);
 }
 
+.concept-map-section {
+  background: var(--soft);
+}
+
+.concept-map-card {
+  overflow: hidden;
+  min-height: 430px;
+  border: 1px solid var(--line);
+  border-radius: 34px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.concept-map-card iframe {
+  display: block;
+  width: 100%;
+  min-height: 430px;
+  border: 0;
+}
+
 @media (max-width: 980px) {
   .concept-nav,
   .concept-hero-grid,
