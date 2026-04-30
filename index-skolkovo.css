@@ -697,6 +697,10 @@ body.vetnas-concept {
   color: var(--royal);
 }
 
+.concept-phone-float {
+  display: none;
+}
+
 .concept-map-section {
   background: var(--soft);
 }
@@ -996,6 +1000,43 @@ body.vetnas-concept {
 }
 
 @media (max-width: 680px) {
+  .concept-side-menu {
+    top: 14px;
+    left: 12px;
+    z-index: 90;
+  }
+
+  .concept-side-menu__trigger {
+    min-height: 48px;
+    padding: 0 16px;
+    box-shadow: 0 14px 34px rgba(47, 31, 136, 0.24);
+  }
+
+  .concept-side-menu__panel {
+    width: min(320px, calc(100vw - 24px));
+    max-height: calc(100vh - 88px);
+  }
+
+  .concept-phone-float {
+    position: fixed;
+    right: 16px;
+    bottom: 18px;
+    z-index: 90;
+    display: inline-flex;
+    width: 58px;
+    height: 58px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.74);
+    border-radius: 50%;
+    background: var(--royal);
+    color: var(--white);
+    box-shadow: 0 18px 42px rgba(47, 31, 136, 0.28);
+    font-size: 25px;
+    font-weight: 900;
+    text-decoration: none;
+  }
+
   .concept-shell {
     width: min(100% - 24px, 1180px);
   }
