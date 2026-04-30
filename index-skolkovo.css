@@ -1059,16 +1059,22 @@ body.vetnas-concept {
     justify-content: center;
     border: 1px solid rgba(255, 255, 255, 0.74);
     border-radius: 50%;
-    background: var(--sun);
-    color: var(--royal);
-    box-shadow: 0 18px 42px rgba(255, 186, 0, 0.32);
-    font-size: 25px;
+    background: var(--royal);
+    color: var(--sun);
+    box-shadow: 0 18px 42px rgba(47, 31, 136, 0.3);
+    font-size: 0;
     font-weight: 900;
     text-decoration: none;
   }
 
   .concept-phone-float span {
-    transform: rotate(-18deg);
+    display: block;
+    width: 27px;
+    height: 27px;
+    background: currentColor;
+    transform: rotate(-10deg);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.34-.34.85-.45 1.29-.3 1.42.47 2.95.72 4.3.72.55 0 1 .45 1 1V20c0 1.1-.9 2-2 2C10.06 22 2 13.94 2 4c0-1.1.9-2 2-2h3.4c.55 0 1 .45 1 1 0 1.35.25 2.88.72 4.3.14.44.04.95-.3 1.29l-2.2 2.2z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.34-.34.85-.45 1.29-.3 1.42.47 2.95.72 4.3.72.55 0 1 .45 1 1V20c0 1.1-.9 2-2 2C10.06 22 2 13.94 2 4c0-1.1.9-2 2-2h3.4c.55 0 1 .45 1 1 0 1.35.25 2.88.72 4.3.14.44.04.95-.3 1.29l-2.2 2.2z'/%3E%3C/svg%3E") center / contain no-repeat;
   }
 
   .concept-shell {
