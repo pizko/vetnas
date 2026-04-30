@@ -31,7 +31,8 @@ body.vetnas-concept {
 
 .concept-shell {
   width: min(1180px, calc(100% - 36px));
-  margin: 0 auto;
+  margin-right: auto !important;
+  margin-left: auto !important;
 }
 
 .concept-topbar {
@@ -568,7 +569,9 @@ body.vetnas-concept {
   z-index: 60;
   top: 112px;
   left: 18px;
-  width: min(330px, calc(100vw - 36px));
+  width: auto;
+  max-width: calc(100vw - 36px);
+  pointer-events: none;
 }
 
 .concept-side-menu a,
@@ -591,6 +594,7 @@ body.vetnas-concept {
   box-shadow: 0 18px 42px rgba(47, 31, 136, 0.22);
   font: 900 15px/1 Montserrat, "Open Sans", sans-serif;
   list-style: none;
+  pointer-events: auto;
 }
 
 .concept-side-menu__trigger::-webkit-details-marker {
@@ -608,6 +612,7 @@ body.vetnas-concept {
 }
 
 .concept-side-menu__panel {
+  width: min(330px, calc(100vw - 36px));
   max-height: calc(100vh - 184px);
   overflow: auto;
   margin-top: 12px;
@@ -617,6 +622,16 @@ body.vetnas-concept {
   background: rgba(255, 255, 255, 0.96);
   box-shadow: 0 24px 70px rgba(47, 31, 136, 0.18);
   backdrop-filter: blur(18px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-14px) translateY(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.concept-side-menu[open] .concept-side-menu__panel {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0) translateY(0);
 }
 
 .concept-side-menu__group {
