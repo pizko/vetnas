@@ -1,0 +1,23 @@
+
+:root {
+	--color-izdw84bao: 0, 0, 0;
+	--color-ifc5g4rbg: 0, 0, 0;
+	--color-ihzbfl1z1: 56, 163, 204;
+	--color-iwjxsujgv: 0, 0, 0;
+	--color-iljownh31: 0, 0, 0;
+}
+
+.section--u-id5ytcj8v { display: block; width: 100%; position: relative; z-index: 5 }
+.button-up--u-i87zj9anv { display: -webkit-box; display: -ms-flexbox; display: flex; position: fixed; margin-left: auto; margin-right: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; width: 55px; height: 55px; background-color: rgba(var(--color-izdw84bao), 0.15); border-top-left-radius: 90px; border-top-right-radius: 90px; border-bottom-right-radius: 90px; border-bottom-left-radius: 90px; justify-content: center;  -webkit-box-align: center; -ms-flex-align: center; align-items: center; bottom: 25px; right: 25px; transition-property: all; transition-duration: 300ms; transition-delay: 0ms; transition-timing-function: ease; outline-style: none; outline-width: 0px; outline-offset: 0px }
+.button-up--u-i87zj9anv:hover, .button-up--u-i87zj9anv.is-hover { background-color: rgba(var(--color-iwjxsujgv), 0.25) }
+.button-up--u-i87zj9anv:active, .button-up--u-i87zj9anv.is-active { background-color: rgba(var(--color-iljownh31), 0.35) }
+.imageFit--u-ikm0xfjtc { position: relative; display: block; vertical-align: top; overflow-x: hidden; overflow-y: hidden; width: 18px; height: 18px }
+.imageFit__img--u-i6417by5q { object-fit: contain; width: 100%; height: 100% }
+.imageFit__overlay--u-izn8teq8u { display: none; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; background-color: rgba(var(--color-ifc5g4rbg), 0.4) }
+.imageFit__zoom--u-iecb6g2gj { display: none; position: absolute; right: 10px; bottom: 10px; width: 20px; height: 20px; background-color: rgba(var(--color-ihzbfl1z1), 1) }
+.svg_image--u-iq3ecyzio { position: relative; display: -webkit-inline-box; display: -ms-inline-flexbox; display: inline-flex; vertical-align: top; justify-content: center;  -webkit-box-align: center; -ms-flex-align: center; align-items: center; height: 20px; width: 20px; overflow-x: hidden; overflow-y: hidden }
+.svg_image--u-iq3ecyzio svg { flex-shrink: 0; width: 100%; height: 100% }
+
+@media (max-width: 991px) {
+	.section--u-id5ytcj8v { display: none }
+}
