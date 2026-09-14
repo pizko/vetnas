@@ -1,3 +1,2 @@
 User-agent: *
-Allow: /
-Sitemap: https://vetnasvyaz.ru/sitemap.php
+Disallow: /

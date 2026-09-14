@@ -1,19 +1,11 @@
-# Vetnasvyaz Static Site
+# Ветеринар на связи — новый сайт (staging)
 
-Static baseline export of the former CMS site for `vetnasvyaz.ru`.
+Предпросмотр: https://pizko.github.io/vetnas/ (закрыт от индексации).
+Контент взят с https://vetnasvyaz.ru, адреса страниц сохранены.
 
-## Current State
+Сборка (исходники в `_src/`, рабочая копия — `~/vibecoding/vetnas-v2`):
 
-This first version is a legacy static snapshot. It is intentionally kept close to the exported site so we can compare behavior before cleanup.
-
-Known issues:
-
-- Legacy generated HTML/CSS/JS is still present.
-- Old form handlers do not work without the former CMS backend.
-- Some links use legacy filenames like `index.html.1.html` and `users@mode=agreement.html`.
-- CSS and JS are duplicated and need to be rebuilt, not just concatenated.
-- External counters and widgets should be reviewed before production.
-
-## Migration Goal
-
-Build a clean static site with shared layouts, normalized assets, one curated CSS bundle, one minimal JS file, working forms, sitemap, robots, and redirects from legacy URLs.
+    python3 src/extract.py                        # тексты с живого сайта -> data/pages.json
+    python3 src/media.py                          # фото -> dist/assets/img
+    python3 src/build.py --base /vetnas/ --staging
+    python3 src/build.py --base /                 # для боевого домена
