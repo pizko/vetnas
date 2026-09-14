@@ -5,7 +5,7 @@
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = window.matchMedia('(pointer: fine)').matches;
 
-  var hdr = document.querySelector('.hdr');
+  var hdr = document.querySelector('.hdr-panel');
   var onScroll = function () { if (hdr) hdr.classList.toggle('is-scrolled', window.scrollY > 10); };
   window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
@@ -20,7 +20,9 @@
   });
 
   /* появление */
-  var els = document.querySelectorAll('[data-reveal], .img-reveal');
+  var els = document.querySelectorAll('[data-reveal], .img-reveal, .rise, .hero-blue, .sec-head, .docs-head');
+  // то, что видно сразу при загрузке, показываем без ожидания наблюдателя
+  els.forEach(function (el) { var r = el.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0) el.classList.add('in'); });
   if ('IntersectionObserver' in window && !reduce) {
     var io = new IntersectionObserver(function (en) {
       en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
@@ -83,7 +85,7 @@
   }
 
   /* галерея */
-  var figs = [].slice.call(document.querySelectorAll('.gal figure[data-full]'));
+  var figs = [].slice.call(document.querySelectorAll('.gal figure[data-full], .collage figure[data-full]'));
   if (figs.length) {
     var lb = document.createElement('div');
     lb.className = 'lb'; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true'); lb.setAttribute('aria-label', 'Просмотр фото');

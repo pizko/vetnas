@@ -25,6 +25,7 @@ ARGS = ap.parse_args()
 BASE = ARGS.base if ARGS.base.endswith("/") else ARGS.base + "/"
 VER = hashlib.md5((SRC / "site.css").read_bytes() + (SRC / "site.js").read_bytes()).hexdigest()[:8]
 META = json.loads((DIST / "assets/img/meta.json").read_text())
+CUT = json.loads((DIST / "assets/img/cut/meta.json").read_text())
 
 PHONE = "+7 (495) 144-48-03"
 TEL = "tel:+74951444803"
@@ -129,7 +130,7 @@ def head(title, desc, path, graph, og_image=None, preload=""):
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
 <link rel="canonical" href="{DOMAIN}{path}">
-{robots}<meta name="theme-color" content="#f4f1ea">
+{robots}<meta name="theme-color" content="#1557ff">
 <meta property="og:site_name" content="Ветеринар на связи">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:type" content="website">
@@ -138,8 +139,7 @@ def head(title, desc, path, graph, og_image=None, preload=""):
 <meta property="og:url" content="{DOMAIN}{path}">
 <meta property="og:image" content="{og}">
 <link rel="icon" href="{a('img/favicon.png')}">
-<link rel="preload" href="{a('fonts/SourceSerif4-normal-cyrillic.woff2')}" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{a('fonts/Onest-normal-cyrillic.woff2')}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{a('fonts/Onest-cyrillic.woff2')}" as="font" type="font/woff2" crossorigin>
 {preload}<link rel="stylesheet" href="{a('site.css')}?v={VER}">
 <script>document.documentElement.className='js'</script>
 {counters}{ld({"@context": "https://schema.org", "@graph": graph})}
@@ -150,58 +150,63 @@ def head(title, desc, path, graph, og_image=None, preload=""):
 
 
 def header(active=""):
-    nav = "".join(f'<a href="{nav_href(p)}"{" aria-current=\"page\"" if active == p else ""}>{n}</a>' for n, p in NAV)
-    mob = "".join(f'<li><a href="{nav_href(p)}">{n}<span>→</span></a></li>' for n, p in
-                  NAV + [("Новости", "novosti"), ("Вакансии", "vakansii")])
-    return f"""<header class="hdr">
+    nav = "".join(f'<a href="{nav_href(p)}"{" aria-current=\"page\"" if active == p else ""}>{n}</a>'
+                  for n, p in [("Клиника", "o-kompanii"), ("Услуги", "uslugi-i-tseny"), ("Врачи", "#vrachi")])
+    mob = "".join(f'<li><a href="{nav_href(p)}"><small>{i + 1:02d}</small>{n}</a></li>' for i, (n, p) in
+                  enumerate(NAV + [("Новости", "novosti"), ("Вакансии", "vakansii")]))
+    return f"""<div class="topline"><div class="wrap"><span><b>24/7</b> · круглосуточно</span><span>Раменское</span><span><a href="{TEL}">{PHONE}</a></span><span>Красноармейская, 13Б</span></div></div>
+<header class="hdr">
   <div class="wrap">
-    <a class="logo" href="{u()}" aria-label="Ветеринар на связи — на главную"><i aria-hidden="true"></i><span>Ветеринар</span><span>на связи</span></a>
-    <nav class="nav" aria-label="Основное меню">{nav}</nav>
-    <div class="hdr-right">
-      <div class="hdr-24"><b>24/7</b><a href="{TEL}">{PHONE}</a></div>
-      <a class="btn btn--green" href="#zapis">Записаться <span class="arr">→</span></a>
-      <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="mnav"><span></span><span></span></button>
+    <div class="hdr-panel">
+      <a class="logo" href="{u()}" aria-label="Ветеринар на связи — на главную"><span>Ветеринар</span><span>на связи</span></a>
+      <nav class="nav" aria-label="Основное меню">{nav}</nav>
+      <div class="hdr-right">
+        <a class="btn btn--blue" href="#zapis">Записаться <span class="arr">↗</span></a>
+        <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="mnav"><span></span><span></span></button>
+      </div>
     </div>
   </div>
 </header>
 <div class="mnav" id="mnav">
-  <ul>{mob}</ul>
-  <div class="foot"><span class="label"><b>24/7</b> · экстренная помощь</span><a href="{TEL}">{PHONE}</a><span class="muted">{ADDRESS}</span></div>
+  <div class="inner">
+    <ul>{mob}</ul>
+    <div class="foot"><span>Экстренная помощь 24/7</span><a class="ph" href="{TEL}">{PHONE}</a><span>{ADDRESS}</span></div>
+  </div>
 </div>
 """
 
 
 def booking_and_contacts():
-    return f"""<section class="section" id="zapis" aria-labelledby="zapis-h">
-  <div class="wrap book">
+    return f"""<section class="wrap section--tight" id="zapis" aria-labelledby="zapis-h">
+  <div class="book">
     <div>
-      <p class="label">Запись на приём</p>
-      <h2 class="h-lg" id="zapis-h" style="margin-top:18px" data-reveal>Записаться<br>на приём.</h2>
-      <p class="muted" style="max-width:460px;margin:24px 0 0" data-reveal>Оставьте имя и телефон — администратор свяжется с вами и уточнит удобное время. Если питомцу плохо прямо сейчас, звоните: мы принимаем круглосуточно.</p>
+      <p class="label" style="color:rgba(255,255,255,.8)">Запись на приём</p>
+      <h2 id="zapis-h" style="margin-top:18px"><span class="rise"><span>Нужна</span></span><span class="rise" style="--d:90ms"><span>помощь?</span></span></h2>
+      <p class="sub" data-reveal>Оставьте имя и телефон — администратор свяжется с вами и уточнит удобное время. Если питомцу плохо прямо сейчас, звоните: мы принимаем круглосуточно.</p>
     </div>
-    <form class="form" data-book data-php="{u('send.php')}" novalidate data-reveal>
+    <form class="form" data-book data-php="{u('send.php')}" novalidate>
       <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
       <label class="sr-only" for="f-name">Ваше имя</label>
       <input id="f-name" type="text" name="name" placeholder="Ваше имя" autocomplete="name" required>
       <label class="sr-only" for="f-phone">Телефон</label>
       <input id="f-phone" type="tel" name="phone" placeholder="Телефон" autocomplete="tel" required>
       <label class="consent"><input type="checkbox" name="consent" required><span>Даю согласие на обработку персональных данных в соответствии с <a href="{u('politika-konfidencialnosti')}">политикой конфиденциальности</a></span></label>
-      <button class="btn btn--green" type="submit">Отправить заявку <span class="arr">→</span></button>
+      <button class="btn btn--white" type="submit">Записаться <span class="arr">↗</span></button>
       <p class="form-note" role="status"></p>
     </form>
+    <img class="pet" src="{a('img/cut/chihuahua-600.webp')}" alt="" width="380" height="600" loading="lazy" decoding="async" aria-hidden="true">
   </div>
 </section>
 <section class="wrap" aria-labelledby="kontakty-h">
   <div class="contacts">
-    <div class="c-info">
-      <p class="label">Контакты</p>
-      <h2 class="h-md" id="kontakty-h" style="margin-top:18px">Мы рядом,<br>когда нужна помощь.</h2>
-      <div class="c-rows">
-        <div class="c-row"><span class="label">Адрес</span><span class="v">г. Раменское,<br>ул. Красноармейская, 13Б</span></div>
-        <div class="c-row"><span class="label">Телефон</span><span class="v"><a class="big" href="{TEL}">{PHONE}</a></span></div>
-        <div class="c-row"><span class="label">График</span><span class="v">24 / 7 — без выходных</span></div>
-        <div class="c-row"><span class="label">Telegram</span><span class="v"><a class="link" href="{TELEGRAM}" rel="noopener" target="_blank">@veterinarnasvyazi <span class="arr">→</span></a></span></div>
+    <div class="c-big">
+      <div>
+        <p class="label">Контакты · мы рядом, когда нужна помощь</p>
+        <h2 class="c-city" id="kontakty-h" style="margin-top:18px">Раменское</h2>
+        <p class="c-addr">ул. Красноармейская, 13Б</p>
       </div>
+      <a class="c-phone" href="{TEL}">{PHONE}</a>
+      <div class="c-row"><span class="chip chip--fill"><span class="dot" style="background:#8fb0ff"></span>24 / 7</span><span class="chip">Без выходных</span><a class="chip" href="{TELEGRAM}" rel="noopener" target="_blank">Telegram ↗</a><a class="chip" href="{YANDEX_ORG}" rel="noopener" target="_blank">Яндекс Карты ↗</a></div>
     </div>
     <div class="map"><iframe src="{MAP}" title="Ветеринар на связи на карте: Раменское, Красноармейская, 13Б" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
   </div>
@@ -209,21 +214,19 @@ def booking_and_contacts():
 
 
 def footer():
-    return f"""<section class="sos" aria-label="Экстренная помощь">
-  <div class="wrap"><p>Экстренная помощь 24/7 — без записи и выходных</p><a class="ph" href="{TEL}">{PHONE}</a></div>
-</section>
+    return f"""<div class="wrap"><section class="sos" aria-label="Экстренная помощь"><div class="in"><p><b>●</b> Экстренная помощь 24/7 — без записи и выходных</p><a href="{TEL}">{PHONE}</a></div></section></div>
+<div class="wrap" style="padding-bottom:0">
 <footer class="ftr">
-  <div class="wrap">
-    <div class="ftr-grid">
-      <div><p class="h">Ветеринар на связи</p><p style="margin:0;max-width:360px;color:rgba(244,241,234,.75)">Ветеринарная клиника в Раменском. Диагностика, хирургия, стационар и лечение животных круглосуточно.</p></div>
-      <div><p class="h">Клиника</p><ul><li><a href="{u('o-kompanii')}">О клинике</a></li><li><a href="{u('uslugi-i-tseny')}">Услуги и цены</a></li><li><a href="{u('novosti')}">Новости</a></li><li><a href="{u('vakansii')}">Вакансии</a></li><li><a href="{u('contacts')}">Контакты</a></li></ul></div>
-      <div><p class="h">Направления</p><ul><li><a href="{u('diagnostika')}">Диагностика</a></li><li><a href="{u('uzi')}">УЗИ</a></li><li><a href="{u('hirurgiya')}">Хирургия</a></li><li><a href="{u('stacionar')}">Стационар</a></li><li><a href="{u('kardiologiya')}">Кардиология</a></li></ul></div>
-      <div><p class="h">Связь</p><ul><li>г. Раменское,<br>ул. Красноармейская, 13Б</li><li><a href="{TEL}">{PHONE}</a></li><li>24 / 7</li><li><a href="{u('politika-konfidencialnosti')}">Политика конфиденциальности</a></li></ul></div>
-    </div>
+  <div class="ftr-grid">
+    <div><p class="h">Ветеринар на связи</p><p style="margin:0;max-width:360px">Ветеринарная клиника в Раменском. Диагностика, хирургия, стационар и лечение животных круглосуточно.</p></div>
+    <div><p class="h">Клиника</p><ul><li><a href="{u('o-kompanii')}">О клинике</a></li><li><a href="{u('uslugi-i-tseny')}">Услуги и цены</a></li><li><a href="{u('novosti')}">Новости</a></li><li><a href="{u('vakansii')}">Вакансии</a></li><li><a href="{u('contacts')}">Контакты</a></li></ul></div>
+    <div><p class="h">Направления</p><ul><li><a href="{u('diagnostika')}">Диагностика</a></li><li><a href="{u('uzi')}">УЗИ</a></li><li><a href="{u('hirurgiya')}">Хирургия</a></li><li><a href="{u('stacionar')}">Стационар</a></li><li><a href="{u('kardiologiya')}">Кардиология</a></li></ul></div>
+    <div><p class="h">Связь</p><ul><li>г. Раменское,<br>ул. Красноармейская, 13Б</li><li><a href="{TEL}">{PHONE}</a></li><li>24 / 7</li><li><a href="{u('politika-konfidencialnosti')}">Политика конфиденциальности</a></li></ul></div>
   </div>
-  <p class="ftr-word" aria-hidden="true">Ветеринар на связи</p>
-  <div class="wrap ftr-base"><span>© {date.today().year} Ветеринар на связи</span><span>Раменское · 24/7</span></div>
+  <p class="ftr-word" aria-hidden="true">на связи</p>
+  <div class="ftr-base"><span>© {date.today().year} Ветеринар на связи</span><span>Раменское · 24/7</span></div>
 </footer>
+</div>
 <nav class="bottom-bar" aria-label="Быстрая связь"><a href="{TEL}">Позвонить 24/7</a><a href="#zapis">Записаться</a></nav>
 """
 
@@ -399,7 +402,7 @@ def build_page(p):
                                                            "acceptedAnswer": {"@type": "Answer", "text": x}} for q, x in faq]})
     label = "Новости" if is_news else ("Услуги / Раменское" if parent else "Клиника / Раменское")
     meta = f'<div class="meta"><span class="label">{e(p["date"].replace("Новости · ", ""))}</span></div>' if is_news and p["date"] else ""
-    cta = "" if is_news else (f'<div class="cta"><a class="btn btn--green" href="#zapis">Записаться <span class="arr">→</span></a>'
+    cta = "" if is_news else (f'<div class="cta"><a class="btn btn--blue" href="#zapis">Записаться <span class="arr">→</span></a>'
                               f'<a class="btn" href="{TEL}">Позвонить 24/7</a></div>')
     hero_media = "" if no_img else f'<div class="p-hero-media">{img(photo, p["h1"], sizes="(max-width:860px) 100vw, 40vw", eager=True)}</div>'
     cover = ""
@@ -513,141 +516,158 @@ REVIEWS = [
 ]
 
 
+def cut(name, alt="", cls="", size=1100, eager=False):
+    w, h = CUT[name]
+    load = 'fetchpriority="high"' if eager else 'loading="lazy"'
+    return (f'<img class="{cls}" src="{a(f"img/cut/{name}-{size}.webp")}" srcset="{a(f"img/cut/{name}-600.webp")} 600w, '
+            f'{a(f"img/cut/{name}-1100.webp")} 1100w" sizes="(max-width:760px) 80vw, 45vw" width="{w}" height="{h}" '
+            f'alt="{e(alt)}" {load} decoding="async"' + (' aria-hidden="true"' if not alt else "") + ">")
+
+
 def build_home(p):
-    rows = "".join(
-        f'<a class="dir-row" href="{u(s)}"><span class="n">{i + 1:02d}</span><h3>{t}</h3><p>{d}</p>'
-        f'<span class="link"><span>Подробнее</span> <span class="arr">→</span></span></a>'
-        for i, (s, t, d, ph) in enumerate(DIRECTIONS))
-    prev = "".join(f'<img data-src="{a(f"img/{ph}-640.webp")}" alt="" width="640" height="800">' for s, t, d, ph in DIRECTIONS)
-    team = [("vrach-dzhek-rassel", "На приёме", "Первичный осмотр"), ("vrach-shchenok-povyazka", "После травмы", "Перевязка и контроль"),
-            ("vrach-siamskaya-koshka", "Терапия", "Спокойный контакт с пациентом"), ("vrachi-labrador", "Команда", "Работаем вдвоём, когда нужно"),
-            ("osmotr-koshki", "Осмотр", "Кожа, шерсть, общее состояние"), ("vrach-koshka-na-pleche", "Кардиология", "Пациент под присмотром")]
-    team_html = "".join(
-        f'<figure data-reveal style="--d:{(i % 3) * 120}ms"><div class="ph">{img(n, c + " — ветеринарная клиника в Раменском", sizes="(max-width:860px) 50vw, 30vw")}</div>'
-        f'<figcaption><strong>{c}</strong><span class="muted">{s}</span></figcaption></figure>' for i, (n, c, s) in enumerate(team))
-    gal = [("pacient-devochka-koshka", "Клиника / Раменское"), ("uzi-koshka", "Диагностика"), ("pacient-bulli", "Приём"),
-           ("pacient-vest-terer", "Пациент"), ("vrachi-ovcharka", "Команда"), ("stacionar-kletka", "Стационар"),
-           ("pacient-kot-na-stole", "Осмотр"), ("fasad-kliniki", "Красноармейская, 13Б")]
-    gal_html = "".join(
-        f'<figure class="g{i + 1}" data-full="{a(f"img/{n}-1280.webp")}" data-reveal><img src="{a(f"img/{n}-640.webp")}" '
-        f'srcset="{a(f"img/{n}-640.webp")} 640w, {a(f"img/{n}-1280.webp")} 1280w" sizes="(max-width:860px) 100vw, 50vw" '
-        f'alt="{c} — ветклиника «Ветеринар на связи»" loading="lazy" decoding="async"><figcaption>{c}</figcaption></figure>'
-        for i, (n, c) in enumerate(gal))
-    revs = "".join(f'<figure class="rev-item"><blockquote>«{e(t)}»</blockquote><figcaption>{e(n)} · отзыв о клинике</figcaption></figure>'
+    tiles = [
+        ("h", "hirurgiya", "Хирургия", "Плановые и срочные операции: стерилизации, ушивания, удаления, санации.", "pes-ryzhiy"),
+        ("k", "kardiologiya", "Кардиология", "ЭКГ, ЭХО сердца и подбор терапии.", "kot-belyy"),
+        ("t", "travmatologiya", "Травматология", "Хромота, ушибы, переломы.", "vrach-shchenok"),
+        ("o", "onkologiya", "Онкология", "Новообразования, диагностика и тактика.", None),
+        ("r", "rodentologiya", "Родентология", "Грызуны и кролики: зубы, ЖКТ, кожа.", None),
+        ("s", "stacionar", "Стационар", "Круглосуточное наблюдение, капельницы и уход после операций.", "koshka-seraya"),
+        ("z", "stomatologiya", "Стоматология", "Санация, чистка зубов, лечение.", None),
+        ("l", "laboratoriya-vns", "Лаборатория", "Анализы крови, мочи, цитология.", None),
+    ]
+    big = {"r": "05", "l": "08", "o": "04", "z": "07"}
+    bento = "".join(
+        f'<a class="tile t-{k}" href="{u(s)}" data-reveal style="--d:{i % 4 * 70}ms"><div class="top"><span class="n">{i + 1:02d}</span><span class="go"><i>↗</i></span></div>'
+        + (cut(pic, "", "pic", 600) if pic else f'<span class="big" aria-hidden="true">{big.get(k, "")}</span>')
+        + f'<div><h3>{t}</h3><p>{d}</p></div></a>'
+        for i, (k, s, t, d, pic) in enumerate(tiles))
+    docs = [("vrach-dzhek-rassel", "На приёме", "Первичный осмотр", 1), ("vrach-shchenok", "После травмы", "Перевязка и контроль", 2),
+            ("vrach-siamskaya", "Терапия", "Спокойный контакт с пациентом", 3), ("vrachi-labrador", "Команда", "Работаем вдвоём, когда нужно", 4),
+            ("vrach-ryzhiy-kot", "Осмотр", "Кожа, шерсть, общее состояние", 5), ("vrach-kot", "Кардиология", "Пациент под присмотром", 6)]
+    docs_html = "".join(
+        f'<figure class="doc-card dc-{c}" data-reveal style="--d:{(c - 1) % 3 * 90}ms">{cut(n, t + " — ветеринарная клиника в Раменском", "", 600)}'
+        f'<figcaption class="cap"><strong>{t}</strong><span>{s}</span></figcaption></figure>' for n, t, s, c in docs)
+    ph = lambda n, c, cap: (f'<figure class="{c}" data-full="{a(f"img/{n}-1280.webp")}" data-reveal><img src="{a(f"img/{n}-640.webp")}" '
+                            f'srcset="{a(f"img/{n}-640.webp")} 640w, {a(f"img/{n}-1280.webp")} 1280w" sizes="(max-width:760px) 100vw, 60vw" '
+                            f'alt="{cap} — ветклиника «Ветеринар на связи»" loading="lazy" decoding="async"><figcaption>{cap}</figcaption></figure>')
+    collage = (ph("pacient-devochka-koshka", "c1", "Клиника / Раменское") +
+               '<div class="poster c2" data-reveal>24/7</div>' +
+               ph("pacient-bulli", "c3", "Приём") + ph("uzi-koshka", "c4", "Диагностика") +
+               ph("vrachi-ovcharka", "c5", "Команда") +
+               '<div class="poster c6" data-reveal>Раменское</div>' +
+               ph("pacient-vest-terer", "c7", "Пациент") +
+               '<div class="poster c8" data-reveal>Лечим. Помогаем. Рядом.</div>')
+    revs = "".join(f'<figure class="rev-item"><blockquote>{e(t)}</blockquote><figcaption>{e(n)} · отзыв о клинике</figcaption></figure>'
                    for t, n in REVIEWS)
     graph = [clinic(), website(), {"@type": "WebPage", "@id": DOMAIN + "/#webpage", "url": DOMAIN + "/",
                                    "name": p["title"], "about": {"@id": CLINIC_ID}, "isPartOf": {"@id": DOMAIN + "/#website"}}]
-    body = f"""<section class="hero" aria-labelledby="hero-h">
-  <div class="hero-text">
-    <div>
-      <p class="label"><b>●</b> Ветеринарный госпиталь / Раменское</p>
-      <h1 id="hero-h"><span class="seo">Ветеринарная клиника в Раменском</span><span class="main">Ветеринарная медицина <i>без&nbsp;догадок.</i></span></h1>
-      <p class="hero-sub">Диагностика, хирургия, стационар и лечение животных 24/7. Сначала находим причину — потом лечим.</p>
-      <div class="hero-cta"><a class="btn btn--green" href="#zapis">Записаться на приём <span class="arr">→</span></a><a class="btn" href="{TEL}">Позвонить 24/7</a></div>
+    body = f"""<section class="wrap home-hero" aria-labelledby="hero-h">
+  <div class="brand-panel">
+    <p class="giant" aria-hidden="true"><span class="rise"><span>Ветеринар</span></span><span class="rise l2" style="--d:120ms"><span>на связи</span></span></p>
+    <div class="brand-meta"><span class="label"><b>●</b> Ветеринарный госпиталь / Раменское</span><span class="label">Красноармейская, 13Б · 24/7</span></div>
+  </div>
+  <div class="hero-blue">
+    <div class="txt">
+      <div>
+        <h1 id="hero-h"><span class="seo">Ветеринарная клиника в Раменском</span><span class="main"><span class="rise" style="--d:200ms"><span>Ветеринарная</span></span><span class="rise" style="--d:290ms"><span>медицина</span></span><span class="rise" style="--d:380ms"><span>без догадок.</span></span></span></h1>
+        <p class="sub">Диагностика, хирургия, стационар и лечение животных 24/7. Сначала находим причину — потом лечим.</p>
+        <div class="cta"><a class="btn btn--white" href="#zapis">Записаться на приём <span class="arr">↗</span></a><a class="btn btn--ghost-w" href="{TEL}">Позвонить 24/7</a></div>
+      </div>
+      <span class="label" style="color:rgba(255,255,255,.8)">Раменское / Красноармейская, 13Б</span>
     </div>
-    <div class="hero-foot"><span class="label">Раменское / Красноармейская, 13Б</span><span class="label"><b>24/7</b> · {PHONE}</span></div>
+    {cut("vest-terer", "Пациент клиники «Ветеринар на связи»", "animal", 1100, True)}
+    <a class="hero-rating" href="{YANDEX_ORG}reviews/" rel="noopener" target="_blank"><b>5,0</b>464 оценки · Яндекс</a>
   </div>
-  <div class="hero-media">{img("vrach-dzhek-rassel", "Ветеринарный врач клиники «Ветеринар на связи» с пациентом", sizes="(max-width:860px) 100vw, 48vw", eager=True)}
-    <a class="hero-badge" href="{YANDEX_ORG}reviews/" rel="noopener" target="_blank"><b>5,0</b><span class="label">464 оценки на Яндекс Картах</span></a>
-  </div>
-</section>
-
-<section class="caps" aria-label="Возможности клиники">
-  <div class="wrap"><ul>
+  <ul class="caps">
     <li data-reveal><b>24/7</b><span>Круглосуточный приём</span></li>
-    <li data-reveal style="--d:80ms"><b>УЗИ</b><span>Диагностика</span></li>
-    <li data-reveal style="--d:160ms"><b>Хирургия</b><span>Плановая и экстренная</span></li>
-    <li data-reveal style="--d:240ms"><b>Стационар</b><span>Наблюдение пациентов</span></li>
-    <li data-reveal style="--d:320ms"><b>Лаборатория</b><span>Исследования</span></li>
-  </ul></div>
+    <li data-reveal style="--d:60ms"><b>УЗИ</b><span>Диагностика</span></li>
+    <li data-reveal style="--d:120ms"><b>Хирургия</b><span>Плановая и экстренная</span></li>
+    <li data-reveal style="--d:180ms"><b>Стационар</b><span>Наблюдение пациентов</span></li>
+    <li data-reveal style="--d:240ms"><b>Лаборатория</b><span>Исследования</span></li>
+  </ul>
 </section>
 
-<section class="section wrap" aria-labelledby="klinika-h">
-  <div class="split">
-    <div><p class="label">01 / Клиника</p><h2 class="h-lg" id="klinika-h" style="margin-top:22px" data-reveal>Медицина начинается с понимания причины.</h2></div>
-    <div class="about-text" data-reveal style="--d:120ms">
+<section class="wrap section" aria-labelledby="klinika-h">
+  <div class="about">
+    <div class="about-photo" data-reveal>{img("vrachi-labrador", "Врачи клиники «Ветеринар на связи» с пациентом", sizes="(max-width:1180px) 100vw, 64vw")}</div>
+    <div class="about-card" data-reveal style="--d:120ms">
+      <p class="label">01 / Клиника</p>
+      <h2 class="h-md" id="klinika-h">Медицина начинается с понимания причины.</h2>
       <p>Ветеринарная клиника «Ветеринар на связи» осуществляет лечение и реабилитацию самых разнообразных животных и предлагает широкий спектр ветеринарных услуг.</p>
       <p class="muted">Клиника работает в г. Раменское, Раменском районе и близлежащих городах. В основе работы — ответственное отношение, опыт персонала, современные подходы к диагностике и лечению и уважение к владельцам.</p>
-      <a class="link" href="{u('o-kompanii')}">О клинике <span class="arr">→</span></a>
+      <div class="chips"><span class="chip chip--fill">24/7 приём пациентов</span><span class="chip">Красноармейская, 13Б</span><span class="chip">Диагностика и лечение на месте</span></div>
+      <a class="btn btn--dark" href="{u('o-kompanii')}">О клинике <span class="arr">↗</span></a>
     </div>
   </div>
-  <div class="about-facts">
-    <div data-reveal><b>24/7</b><span class="muted">приём пациентов</span></div>
-    <div data-reveal style="--d:100ms"><b>Раменское</b><span class="muted">Красноармейская, 13Б</span></div>
-    <div data-reveal style="--d:200ms"><b>На месте</b><span class="muted">диагностика и лечение</span></div>
-  </div>
 </section>
 
-<section class="section wrap" aria-labelledby="napr-h" style="padding-top:0">
-  <div class="sec-top"><h2 class="h-md" id="napr-h">Направления</h2><a class="link" href="{u('uslugi-i-tseny')}">Услуги и цены <span class="arr">→</span></a></div>
-  <div class="dir-list">{rows}<div class="dir-prev" aria-hidden="true">{prev}</div></div>
+<section class="wrap" aria-labelledby="napr-h">
+  <div class="sec-head"><h2 class="h-lg" id="napr-h"><span class="rise"><span>Направления</span></span></h2><a class="btn" href="{u('uslugi-i-tseny')}">Услуги и цены <span class="arr">↗</span></a></div>
+  <div class="bento">{bento}</div>
 </section>
 
-<section class="full" aria-labelledby="diag-h">
-  <div class="full-media">{img("uzi-koshka", "Врач клиники с пациентом у аппарата УЗИ", extra=' data-parallax')}</div>
-  <div class="wrap">
+<section class="wrap section" aria-labelledby="diag-h">
+  <div class="diag">
     <p class="label">02 / Диагностика</p>
-    <h2 class="h-xl" id="diag-h" style="margin-top:20px" data-reveal>Мы не гадаем.<br>Мы диагностируем.</h2>
-    <nav class="full-links" aria-label="Диагностика">
-      <a href="{u('uzi')}">УЗИ</a><a href="{u('ekg-zhivotnym-ramenskoe')}">ЭКГ / ЭХО</a><a href="{u('laboratoriya-vns')}">Лабораторная диагностика</a><a href="{u('kardiologiya')}">Кардиология</a><a href="{u('dermatologiya-endokrinologiya')}">Дерматологическая диагностика</a><a href="{u('rentgen')}">Рентген</a>
-    </nav>
+    <h2 id="diag-h"><span class="l"><span class="rise"><span>Мы не</span></span><span class="rise" style="--d:90ms"><span>гадаем.</span></span></span><span class="l"><span class="rise" style="--d:180ms"><span>Мы</span></span><span class="rise" style="--d:270ms"><span>диагностируем.</span></span></span></h2>
+    <div class="diag-img" data-reveal>{img("uzi-koshka", "Врач клиники с пациентом у аппарата УЗИ", sizes="(max-width:1180px) 100vw, 36vw")}</div>
+    <nav aria-label="Диагностика"><a href="{u('uzi')}">УЗИ ↗</a><a href="{u('ekg-zhivotnym-ramenskoe')}">ЭКГ / ЭХО ↗</a><a href="{u('rentgen')}">Рентген ↗</a><a href="{u('laboratoriya-vns')}">Лаборатория ↗</a><a href="{u('kardiologiya')}">Кардиология ↗</a><a href="{u('dermatologiya-endokrinologiya')}">Дерматологическая диагностика ↗</a></nav>
   </div>
 </section>
 
-<section class="section wrap" aria-labelledby="stac-h">
+<section class="wrap" aria-labelledby="stac-h">
   <div class="stac">
-    <div class="stac-media img-reveal">{img("stacionar-kletka", "Врач рядом с пациентом в стационаре клиники", sizes="(max-width:860px) 100vw, 45vw")}</div>
-    <div>
-      <p class="label">03 / Стационар</p>
-      <h2 class="h-lg" id="stac-h" style="margin-top:22px" data-reveal>Под наблюдением<br>24 часа.</h2>
-      <p class="muted" style="font-size:19px;max-width:520px;margin:24px 0 0" data-reveal>Послеоперационное наблюдение, инфузионная терапия, уход и контроль состояния пациентов.</p>
-      <ul class="stac-cats" data-reveal>
-        <li>1 категория<span>стабильное животное</span></li>
-        <li>2 категория<span>состояние средней тяжести</span></li>
-        <li>3 категория<span>тяжёлое состояние</span></li>
-      </ul>
-      <a class="btn btn--green" href="{u('stacionar')}">Стационар <span class="arr">→</span></a>
-    </div>
-  </div>
-</section>
-
-<section class="dark section" aria-labelledby="hir-h">
-  <div class="wrap surg">
-    <div>
-      <p class="label">04 / Хирургия</p>
-      <h2 class="h-lg" id="hir-h" style="margin-top:22px" data-reveal>Когда нужно<br>действовать точно.</h2>
-      <p class="muted" style="font-size:19px;max-width:520px;margin:24px 0 0" data-reveal>Стерилизации, экстренные операции, ушивания, удаления, санации. Наркоз под контролем и наблюдение после вмешательства.</p>
-      <div class="surg-list" data-reveal>
-        <a href="{u('hirurgiya')}">Хирургия<span>→</span></a><a href="{u('kastraciya-sterilizaciya')}">Кастрация и стерилизация<span>→</span></a>
-        <a href="{u('travmatologiya')}">Травматология<span>→</span></a><a href="{u('narkoz-anesteziya')}">Наркоз и анестезия<span>→</span></a>
+    <div class="stac-type">
+      <div>
+        <p class="label">03 / Стационар</p>
+        <h2 id="stac-h" style="margin-top:14px">Под наблюдением <span class="num">24<small>часа.</small></span></h2>
+      </div>
+      <div>
+        <p class="muted" style="font-size:19px;max-width:520px;margin:0">Послеоперационное наблюдение, инфузионная терапия, уход и контроль состояния пациентов.</p>
+        <div class="chips"><span class="chip">1 категория · стабильное животное</span><span class="chip">2 категория · средняя тяжесть</span><span class="chip">3 категория · тяжёлое состояние</span></div>
+        <a class="btn btn--blue" href="{u('stacionar')}" style="margin-top:24px">Стационар <span class="arr">↗</span></a>
       </div>
     </div>
-    <div class="surg-media img-reveal">{img("vrachi-konsultatsiya", "Врачи клиники обсуждают план лечения", sizes="(max-width:860px) 100vw, 45vw")}</div>
+    <div class="stac-photo" data-reveal>{img("stacionar-kletka", "Врач рядом с пациентом в стационаре клиники", sizes="(max-width:1180px) 100vw, 42vw")}</div>
   </div>
 </section>
 
-<section class="section wrap" id="vrachi" aria-labelledby="vrachi-h">
-  <div class="sec-top"><div><p class="label">05 / Врачи</p><h2 class="h-lg" id="vrachi-h" style="margin-top:18px">Те, кому вы доверяете своего питомца.</h2></div></div>
-  <div class="team team--shift">{team_html}</div>
-</section>
-
-<section class="section wrap" aria-labelledby="gal-h" style="padding-top:0">
-  <div class="sec-top"><h2 class="h-md" id="gal-h">Клиника изнутри</h2><span class="label">Раменское</span></div>
-  <div class="gal">{gal_html}</div>
-</section>
-
-<section class="section wrap" aria-labelledby="rev-h" style="padding-top:0">
-  <div class="rev">
-    <div><p class="label">06 / Доверие</p><h2 class="h-md" id="rev-h" style="margin-top:18px">Они пришли к нам за помощью.</h2>
-      <p class="muted" style="margin-top:22px"><a class="link" href="{YANDEX_ORG}reviews/" rel="noopener" target="_blank">5,0 на Яндекс Картах <span class="arr">→</span></a></p></div>
+<section class="wrap section" aria-labelledby="hir-h">
+  <div class="surg">
+    <p class="word" aria-hidden="true"><span class="rise"><span>Хирургия</span></span></p>
     <div>
-      <div class="rev-stage" aria-live="polite">{revs}</div>
+      <p class="label" style="color:rgba(255,255,255,.6)">04 / Хирургия</p>
+      <h2 id="hir-h" style="margin-top:14px">Когда нужно действовать точно.</h2>
+      <p>Стерилизации, экстренные операции, ушивания, удаления, санации. Наркоз под контролем и наблюдение после вмешательства.</p>
+      <nav class="surg-links" aria-label="Хирургия"><a href="{u('hirurgiya')}">Хирургия ↗</a><a href="{u('kastraciya-sterilizaciya')}">Кастрация и стерилизация ↗</a><a href="{u('travmatologiya')}">Травматология ↗</a><a href="{u('narkoz-anesteziya')}">Наркоз и анестезия ↗</a></nav>
+    </div>
+    <div class="surg-media" data-reveal>{img("vrachi-konsultatsiya", "Врачи клиники обсуждают план лечения", sizes="(max-width:1180px) 100vw, 46vw")}
+      <div class="surg-badge"><b>24/7</b>Экстренная<br>хирургия</div></div>
+  </div>
+</section>
+
+<section class="wrap" id="vrachi" aria-labelledby="vrachi-h">
+  <div class="docs-head"><p class="giant" aria-hidden="true"><span class="rise"><span>Врачи</span></span></p><h2 id="vrachi-h">Те, кому вы доверяете своего питомца.</h2></div>
+  <div class="docs">{docs_html}</div>
+</section>
+
+<section class="wrap section" aria-labelledby="gal-h">
+  <div class="sec-head"><h2 class="h-lg" id="gal-h"><span class="rise"><span>Клиника изнутри</span></span></h2><span class="chip">Раменское</span></div>
+  <div class="collage">{collage}</div>
+</section>
+
+<section class="wrap" aria-labelledby="rev-h">
+  <div class="rev">
+    <div class="rev-side">
+      <div><p class="label">06 / Доверие</p><h2 class="h-md" id="rev-h" style="margin-top:14px">Они пришли к нам за помощью.</h2></div>
+      <a class="rev-score" href="{YANDEX_ORG}reviews/" rel="noopener" target="_blank"><b>5,0</b><span>Яндекс<br>464 оценки ↗</span></a>
       <div class="rev-nav"><button type="button" class="rev-prev" aria-label="Предыдущий отзыв">←</button><button type="button" class="rev-next" aria-label="Следующий отзыв">→</button><span class="label rev-count"></span></div>
     </div>
+    <div class="rev-main"><div class="rev-stage" aria-live="polite">{revs}</div></div>
   </div>
 </section>"""
     write("/", p["title"], p["description"], graph, body,
-          preload=f'<link rel="preload" as="image" href="{a("img/vrach-dzhek-rassel-1280.webp")}" imagesrcset="{a("img/vrach-dzhek-rassel-640.webp")} 640w, {a("img/vrach-dzhek-rassel-1280.webp")} 1280w" imagesizes="(max-width:860px) 100vw, 48vw" fetchpriority="high">\n')
+          preload=f'<link rel="preload" as="image" href="{a("img/cut/vest-terer-1100.webp")}" imagesrcset="{a("img/cut/vest-terer-600.webp")} 600w, {a("img/cut/vest-terer-1100.webp")} 1100w" imagesizes="(max-width:760px) 80vw, 45vw" fetchpriority="high">\n')
 
 
 # ------------------------------------------------------------------ сборка
