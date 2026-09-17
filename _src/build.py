@@ -194,7 +194,6 @@ def booking_and_contacts():
       <button class="btn btn--white" type="submit">Записаться <span class="arr">↗</span></button>
       <p class="form-note" role="status"></p>
     </form>
-    <img class="pet" src="{a('img/cut/chihuahua-600.webp')}" alt="" width="380" height="600" loading="lazy" decoding="async" aria-hidden="true">
   </div>
 </section>
 <section class="wrap" aria-labelledby="kontakty-h">
