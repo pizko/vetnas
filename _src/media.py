@@ -14,7 +14,7 @@ OUT = ROOT / "dist/assets/img"
 
 # имя на сайте -> исходник
 PHOTOS = {
-    "vrach-dzhek-rassel": Y / "y2.jpg",
+    # y2.jpg НЕ из галереи клиники: это обложка подборки Яндекса «Хорошее место 2026 в Раменском» — не использовать
     "vrach-koshka-na-pleche": Y / "y9.jpg",
     "vrach-shchenok-povyazka": Y / "y15.jpg",
     "vrachi-labrador": Y / "y14.jpg",

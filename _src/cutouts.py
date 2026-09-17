@@ -9,7 +9,7 @@ import json, os
 from PIL import Image
 
 NAMES = {"y12": "pes-ryzhiy", "y13": "vest-terer", "y10": "kot-belyy", "y11": "kotenok-chernyy",
-         "y6": "koshka-seraya", "y1": "chihuahua", "y2": "vrach-dzhek-rassel", "y9": "vrach-kot",
+         "y6": "koshka-seraya", "y1": "chihuahua", "y9": "vrach-kot",
          "y14": "vrachi-labrador", "y15": "vrach-shchenok", "ovcharka": "vrachi-ovcharka",
          "gallery-3": "vrach-siamskaya", "gallery-2": "vrach-ryzhiy-kot"}
 os.makedirs("dist/assets/img/cut", exist_ok=True)

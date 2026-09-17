@@ -75,7 +75,7 @@ def clinic():
         "description": "Ветеринарная клиника в Раменском: диагностика, хирургия, стационар и лечение животных 24/7.",
         "url": DOMAIN + "/",
         "telephone": "+74951444803",
-        "image": DOMAIN + "/assets/img/vrach-dzhek-rassel-1280.webp",
+        "image": DOMAIN + "/assets/img/vrachi-ovcharka-1280.webp",
         "priceRange": "₽₽",
         "address": {"@type": "PostalAddress", "streetAddress": "ул. Красноармейская, 13Б",
                     "addressLocality": "Раменское", "addressRegion": "Московская область",
@@ -115,7 +115,7 @@ def nav_href(p):
 
 
 def head(title, desc, path, graph, og_image=None, preload=""):
-    og = og_image or DOMAIN + "/assets/img/vrach-dzhek-rassel-1280.webp"
+    og = og_image or DOMAIN + "/assets/img/vrachi-ovcharka-1280.webp"
     robots = '<meta name="robots" content="noindex, nofollow">\n' if ARGS.staging else ""
     counters = "" if ARGS.staging else """<meta name="yandex-verification" content="010c8fea5b64bb1a">
 <meta name="google-site-verification" content="6z5LWg_7OVz5SjBuYhUsi-6xImMs6lzzMsZf-xvE_5s">
@@ -255,10 +255,10 @@ def write(path, title, desc, graph, body, active="", og=None, preload=""):
 
 CATS = ["vrach-siamskaya-koshka", "osmotr-koshki", "pacient-kot-na-stole", "pacient-chernyy-kotenok",
         "vrach-koshka-na-pleche", "pacient-devochka-koshka", "pacient-seraya-koshka"]
-DOGS = ["vrach-dzhek-rassel", "vrach-shchenok-povyazka", "vrachi-labrador", "vrachi-ovcharka", "pacient-bulli",
+DOGS = ["vrach-shchenok-povyazka", "vrachi-labrador", "vrachi-ovcharka", "pacient-bulli",
         "pacient-ryzhiy-pes", "pacient-vest-terer", "pacient-chihuahua"]
 CLINICAL = ["vrachi-konsultatsiya", "uzi-koshka", "vrach-koshka-na-pleche", "vrach-shchenok-povyazka",
-            "osmotr-koshki", "vrach-dzhek-rassel", "vrachi-labrador"]
+            "osmotr-koshki", "vrachi-ovcharka", "vrachi-labrador"]
 
 
 def pick(slug, text):
@@ -541,7 +541,7 @@ def build_home(p):
         + (cut(pic, "", "pic", 600) if pic else f'<span class="big" aria-hidden="true">{big.get(k, "")}</span>')
         + f'<div><h3>{t}</h3><p>{d}</p></div></a>'
         for i, (k, s, t, d, pic) in enumerate(tiles))
-    docs = [("vrach-dzhek-rassel", "На приёме", "Первичный осмотр", 1), ("vrach-shchenok", "После травмы", "Перевязка и контроль", 2),
+    docs = [("vrachi-ovcharka", "На приёме", "Первичный осмотр", 1), ("vrach-shchenok", "После травмы", "Перевязка и контроль", 2),
             ("vrach-siamskaya", "Терапия", "Спокойный контакт с пациентом", 3), ("vrachi-labrador", "Команда", "Работаем вдвоём, когда нужно", 4),
             ("vrach-ryzhiy-kot", "Осмотр", "Кожа, шерсть, общее состояние", 5), ("vrach-kot", "Кардиология", "Пациент под присмотром", 6)]
     docs_html = "".join(
