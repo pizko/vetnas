@@ -1,0 +1,61 @@
+{
+  "siteName": "Ветеринар на связи",
+  "tagline": "ветеринарная клиника",
+  "phone": "+7 (495) 144-48-03",
+  "phoneHref": "tel:+74951444803",
+  "address": "Раменское, Красноармейская, 13",
+  "menu": [
+    {
+      "label": "Главная",
+      "href": "/"
+    },
+    {
+      "label": "О компании",
+      "href": "/o-kompanii"
+    },
+    {
+      "label": "Услуги и цены",
+      "href": "/uslugi-i-tseny"
+    },
+    {
+      "label": "Вакансии",
+      "href": "/vakansii"
+    },
+    {
+      "label": "Новости",
+      "href": "/novosti"
+    },
+    {
+      "label": "Контакты",
+      "href": "#contacts"
+    }
+  ],
+  "sideMenu": [
+    {
+      "label": "Главная",
+      "href": "/"
+    },
+    {
+      "label": "О компании",
+      "href": "/o-kompanii"
+    },
+    {
+      "label": "Услуги и цены",
+      "href": "/uslugi-i-tseny"
+    },
+    {
+      "label": "Вакансии",
+      "href": "/vakansii"
+    },
+    {
+      "label": "Новости",
+      "href": "/novosti"
+    },
+    {
+      "label": "Контакты",
+      "href": "#contacts"
+    }
+  ],
+  "mapEmbed": "<iframe src=\"https://yandex.ru/map-widget/v1/?ll=38.233634%2C55.572556&amp;z=18&amp;pt=38.233634%2C55.572556%2Cpm2rdm\" title=\"Ветеринар на связи на карте\" loading=\"lazy\"></iframe>",
+  "footerHtml": "<span>© 2026 Ветеринар на связи</span>\n        <a href=\"index.html\">Главная</a>"
+}
