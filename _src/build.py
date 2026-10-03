@@ -537,7 +537,7 @@ def build_home(p):
     big = {"r": "05", "l": "08", "o": "04", "z": "07"}
     bento = "".join(
         f'<a class="tile t-{k}" href="{u(s)}" data-reveal style="--d:{i % 4 * 70}ms"><div class="top"><span class="n">{i + 1:02d}</span><span class="go"><i>↗</i></span></div>'
-        + (cut(pic, "", "pic", 600) if pic else f'<span class="big" aria-hidden="true">{big.get(k, "")}</span>')
+        + f'<span class="big" aria-hidden="true">{i + 1:02d}</span>'
         + f'<div><h3>{t}</h3><p>{d}</p></div></a>'
         for i, (k, s, t, d, pic) in enumerate(tiles))
     docs = [("vrachi-ovcharka", "На приёме", "Первичный осмотр", 1), ("vrach-shchenok", "После травмы", "Перевязка и контроль", 2),
@@ -552,7 +552,7 @@ def build_home(p):
     collage = (ph("pacient-devochka-koshka", "c1", "Клиника / Раменское") +
                '<div class="poster c2" data-reveal>24/7</div>' +
                ph("pacient-bulli", "c3", "Приём") + ph("uzi-koshka", "c4", "Диагностика") +
-               ph("vrachi-ovcharka", "c5", "Команда") +
+               ph("vrachi-labrador", "c5", "Команда") +
                '<div class="poster c6" data-reveal>Раменское</div>' +
                ph("pacient-vest-terer", "c7", "Пациент") +
                '<div class="poster c8" data-reveal>Лечим. Помогаем. Рядом.</div>')
@@ -588,7 +588,7 @@ def build_home(p):
 
 <section class="wrap section" aria-labelledby="klinika-h">
   <div class="about">
-    <div class="about-photo" data-reveal>{img("vrachi-labrador", "Врачи клиники «Ветеринар на связи» с пациентом", sizes="(max-width:1180px) 100vw, 64vw")}</div>
+    <div class="about-photo" data-reveal>{img("vrachi-ovcharka", "Врачи клиники «Ветеринар на связи» с пациентом", sizes="(max-width:1180px) 100vw, 64vw")}</div>
     <div class="about-card" data-reveal style="--d:120ms">
       <p class="label">01 / Клиника</p>
       <h2 class="h-md" id="klinika-h">Медицина начинается с понимания причины.</h2>

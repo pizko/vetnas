@@ -178,7 +178,7 @@ button, input, textarea { font: inherit; color: inherit; }
 .t-k .pic, .t-z .pic, .t-t .pic { bottom: auto; top: 16%; height: 46%; right: 5%; max-width: 58%; object-position: top right; }
 .t-t .pic { top: 12%; height: 52%; right: 0; }
 .tile:hover .pic { transform: translateY(-6px) scale(1.02); }
-.t-r .big, .t-l .big, .t-o .big, .t-z .big { position: absolute; right: 18px; bottom: -.12em; font: 800 clamp(90px, 9vw, 170px)/1 var(--font); letter-spacing: -.06em; opacity: .16; z-index: 1; }
+.tile .big { position: absolute; right: 18px; bottom: -.12em; font: 800 clamp(90px, 9vw, 170px)/1 var(--font); letter-spacing: -.06em; opacity: .16; z-index: 1; }
 
 /* диагностика: синий экран */
 .diag { background: var(--blue); color: #fff; border-radius: var(--r-xl); padding: clamp(28px, 3.6vw, 64px); min-height: 92svh; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, .6fr); grid-template-rows: auto 1fr auto; gap: 32px clamp(24px, 3vw, 56px); }
