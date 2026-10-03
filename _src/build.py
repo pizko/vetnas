@@ -240,7 +240,26 @@ def tail():
 SITEMAP = []
 
 
+# Заголовки, которые на живом сайте слишком короткие или не по теме страницы: (title, H1 или None)
+TITLE_FIX = {
+    "/5-zabluzhdenij-vladelcev-domashnih-zhivotnyh": ("5 заблуждений владельцев домашних животных — ветеринар в Раменском", "5 заблуждений владельцев домашних животных"),
+    "/chem-zanimaetsya-veterinar": ("Чем занимается ветеринар — ветклиника «Ветеринар на связи», Раменское", None),
+    "/doverie": ("Доверие между врачом и владельцем питомца — ветклиника в Раменском", "Доверие между врачом и владельцем"),
+    "/koprostaz": ("Копростаз у кошки: лечение в Раменском — Ветеринар на связи", None),
+    "/o-kompanii": ("О ветеринарной клинике «Ветеринар на связи» в Раменском", None),
+    "/ushnoj-kleshch": ("Ушной клещ у кошек и собак: лечение в Раменском — Ветеринар на связи", None),
+    "/uz-chistka-zubov": ("УЗ-чистка зубов кошкам и собакам в Раменском — Ветеринар на связи", None),
+    "/vakansii": ("Вакансии ветеринарной клиники «Ветеринар на связи», Раменское", None),
+    "/temperatura-u-koshki-ramenskoe": ("Высокая температура у кошки: помощь ветеринара в Раменском", None),
+}
+
+
 def write(path, title, desc, graph, body, active="", og=None, preload=""):
+    fix = TITLE_FIX.get("/" + path.strip("/"))
+    if fix:
+        title = fix[0]
+        if fix[1]:
+            body = re.sub(r"(<h1[^>]*>).*?(</h1>)", lambda m: m.group(1) + e(fix[1]) + m.group(2), body, count=1, flags=re.S)
     out = head(title, desc, path, graph, og, preload) + header(active) + '<main id="main">' + body + \
         "</main>" + booking_and_contacts() + footer() + tail()
     rel = path.strip("/")
@@ -482,7 +501,8 @@ def build_news_lists(news):
   <div class="section--tight"><div class="news-grid">{''.join(card(n) for n in chunk)}</div>{pager}</div>
 </section>"""
         write(urls[i], f"{title} — Ветеринар на связи, Раменское",
-              "Новости и клинические случаи ветеринарной клиники «Ветеринар на связи» в Раменском.",
+              "Новости и клинические случаи ветеринарной клиники «Ветеринар на связи» в Раменском."
+              + (f" Страница {i + 1}." if i else ""),
               [clinic(), website(), bc_node], body)
     # /novosti/ — полный список
     bc_node, bc_html = crumbs([("Главная", "/"), ("Новости", "/novosti/")])
