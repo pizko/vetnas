@@ -1,0 +1,579 @@
+.lp-form-tpl__title-wrapper {
+	text-align: center;
+	padding-bottom: 24px
+}
+
+.lp-form-tpl__title-wrapper [class^=lp-header] {
+	padding: 0;
+	margin: 0
+}
+
+.lp-form-tpl__title+.lp-form-tpl__subtitle {
+	padding-top: 16px
+}
+
+[data-media-source="media-xl"] .lp-form-tpl__item,
+[data-media-source="media-lg"] .lp-form-tpl__item{
+	padding-bottom: 20px;
+}
+
+.lp-form-tpl__item {
+	padding-bottom: 16px;
+}
+
+.lp-form-tpl__item._type-div [class^=lp-header] {
+	padding: 0;
+	margin: 0
+}
+
+.lp-form-tpl__item._type-html_block [class^=lp-header] {
+	padding: 0;
+	margin: 0
+}
+
+.lp-form-tpl__item._type-html_block [class^=lp-header] p:first-child {
+	margin-top: 0
+}
+
+.lp-form-tpl__item._type-html_block [class^=lp-header] p:last-child {
+	margin-bottom: 0
+}
+
+.lp-form-tpl__item-field {
+	position: relative
+}
+
+.lp-form-tpl__item-label {
+	padding-bottom: 8px
+}
+
+/*.lp-form-tpl input[data-alias="product_name"] {
+	opacity: 0;
+	height: 0;
+}*/
+
+._type-multi_checkbox .lp-form-tpl__item-label,
+._type-radio_group .lp-form-tpl__item-label {
+	padding-bottom: 16px
+}
+
+.lp-form-tpl__item-error,
+.lp-form-tpl__item-note {
+	padding-top: 4px
+}
+
+.lp-form-tpl__item-error {
+	display: none;
+}
+
+._error .lp-form-tpl__item-error {
+	display: block;
+}
+
+._type-multi_select input[type="text"], 
+._type-select input[type="text"] {
+	position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    -webkit-appearance: none;
+}
+
+.lp-form-tpl__field-text,
+.lp-form-tpl__field-textarea{
+	border: 1px solid var(--text-color-a-03);
+	border-radius: 6px;
+	box-sizing: border-box;
+	padding: 12px 16px;
+	width: 100%;
+	outline: 0;
+	transition: all .15s;
+	background-color: transparent;
+}
+
+.lp-form-tpl__field-textarea {
+	min-height: 50px;
+}
+
+
+.lp-form-tpl__field-text:focus,
+.lp-form-tpl__field-text:hover,
+.lp-form-tpl__field-textarea:focus,
+.lp-form-tpl__field-textarea:hover {
+	background: var(--primary-color-a-01);
+	border-color: var(--primary-color-base)
+}
+
+._error .lp-form-tpl__field-text,
+._error .lp-form-tpl__field-textarea {
+	/*background: var(--content-background-lpc);*/
+	border: 1px solid #eb5757;
+}
+
+.lp-form-tpl__field-text::-webkit-input-placeholder,
+.lp-form-tpl__field-textarea::-webkit-input-placeholder {
+	color: inherit;
+	opacity: .5
+}
+
+.lp-form-tpl__field-text:-moz-placeholder,
+.lp-form-tpl__field-textarea:-moz-placeholder {
+	color: inherit;
+	opacity: .5
+}
+
+.lp-form-tpl__field-text::-moz-placeholder,
+.lp-form-tpl__field-textarea::-moz-placeholder {
+	color: inherit;
+	opacity: .5
+}
+
+.lp-form-tpl__field-text:-ms-input-placeholder,
+.lp-form-tpl__field-textarea:-ms-input-placeholder {
+	color: inherit;
+	opacity: .5
+}
+
+/*.lp-form-tpl__field-textarea {
+	height: 103px;
+}*/
+
+.lp-form-tpl__field-multi_select,
+.lp-form-tpl__field-select {
+	position: relative;
+	
+}
+
+
+
+.lp-form-tpl__field-multi_select input[type="text"],
+.lp-form-tpl__field-select input[type="text"] {
+	position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    -webkit-appearance: none;
+}
+
+.lp-form-tpl__field-multi_select__input,
+.lp-form-tpl__field-select__input {
+	cursor: pointer;
+	position: relative;
+}
+.lp-form-tpl__field-select__input:before,
+.lp-form-tpl__field-multi_select__input:before {
+	position: absolute;
+    top: 50%;
+    right: 15px;
+    z-index: 2;
+    font-size: 24px;
+    line-height: 1;
+    font-family: lpc_icomoon;
+    content: "\e901";
+    pointer-events: none;
+    transform: translateY(-50%) rotate(0.001deg);
+}
+.lp-form-tpl__field-select._opened .lp-form-tpl__field-select__input:before,
+.lp-form-tpl__field-multi_select._opened .lp-form-tpl__field-multi_select__input:before {
+	transform: translateY(-50%) rotate(0.001deg) scale(-1);
+}
+.lp-form-tpl__field-select__list-item:before,
+.lp-form-tpl__field-multi_select__list-item:before{
+	position: absolute;
+    top: 50%;
+    right: 19px;
+    z-index: 2;
+    font-size: 12px;
+    line-height: 1;
+    font-family: lpc_icomoon;
+    content: "\e900";
+    pointer-events: none;
+    transform: translateY(-50%) rotate(0.001deg);
+    opacity: 0;
+    visibility: hidden;
+}
+
+.lp-form-tpl__field-select__list-item._checked:before,
+.lp-form-tpl__field-multi_select__list-item._checked:before{
+	opacity: 1;
+    visibility: visible;
+}
+
+.lp-form-tpl__field-multi_select__input--count,
+.lp-form-tpl__field-select__input--count {
+	color: var(--primary-color-base)
+}
+
+.lp-form-tpl__field-multi_select__list,
+.lp-form-tpl__field-select__list {
+	visibility: hidden;
+	opacity: 0;
+	transform: translateY(8px);
+	transition: opacity .3s ease, transform .3s ease;
+	position: absolute;
+	top: 100%;
+	width: 100%;
+	box-sizing: border-box;
+	border: 1px solid var(--primary-color-base);
+	padding: 0 !important;
+	/* margin: 12px 0 0 !important; */
+	margin: 8px 0 0 !important;
+	border-radius: 6px !important;
+	z-index: 5;
+	max-height: 242px;
+	overflow-y: auto;
+	background: var(--content-background-lpc);
+}
+
+.lp-form-tpl__field-multi_select__list:hover,
+.lp-form-tpl__field-select__list:hover {
+	background: var(--content-background-lpc);
+}
+
+.lp-form-tpl__field-multi_select__list-item,
+.lp-form-tpl__field-select__list-item {
+	padding: 10px 47px 10px 15px;
+	transition: all .15s;
+	cursor: pointer;
+	position: relative;
+	margin: 0 !important;
+	border: none !important;
+	box-shadow: none !important;
+	border-radius: 0 !important;
+}
+
+.lp-form-tpl__item._type-select .lp-form-tpl__item-field input[type="text"],
+.lp-form-tpl__item._type-multi_select .lp-form-tpl__item-field input[type="text"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    -webkit-appearance: none;
+}
+
+.lp-form-tpl__field-multi_select__list-item:last-child,
+.lp-form-tpl__field-select__list-item:last-child {
+	margin-bottom: 0
+}
+
+.lp-form-tpl__field-multi_select__list-item:hover,
+.lp-form-tpl__field-select__list-item:hover {
+	background: var(--primary-color-a-01);
+	border: none;
+}
+
+.lp-form-tpl__field-multi_select__list-item--checked,
+.lp-form-tpl__field-select__list-item--checked {
+	position: absolute;
+	top: 8px;
+	right: 15px;
+	display: none
+}
+
+.lp-form-tpl__field-multi_select__list-item--checked path,
+.lp-form-tpl__field-select__list-item--checked path {
+	fill: var(--text-color-base)
+}
+
+.lp-form-tpl__field-multi_select__list-item._checked .lp-form-tpl__field-multi_select__list-item--checked,
+.lp-form-tpl__field-multi_select__list-item._checked .lp-form-tpl__field-select__list-item--checked,
+.lp-form-tpl__field-select__list-item._checked .lp-form-tpl__field-multi_select__list-item--checked,
+.lp-form-tpl__field-select__list-item._checked .lp-form-tpl__field-select__list-item--checked {
+	display: block
+}
+
+.lp-form-tpl__field-multi_select._opened .lp-form-tpl__field-multi_select__list,
+.lp-form-tpl__field-select._opened .lp-form-tpl__field-select__list {
+	visibility: visible;
+	opacity: 1;
+	transform: translateY(0);
+	transition: opacity .3s ease, transform .3s ease;
+}
+
+.lp-form-tpl__field-multi_select._opened .lp-form-tpl__field-multi_select__input,
+.lp-form-tpl__field-multi_select._opened .lp-form-tpl__field-select__input,
+.lp-form-tpl__field-select._opened .lp-form-tpl__field-multi_select__input,
+.lp-form-tpl__field-select._opened .lp-form-tpl__field-select__input {
+	/*background: linear-gradient(0deg, var(--primary-color-a-01), var(--primary-color-a-01)), #fff;*/
+	/*background: var(--content-background-lpc);*/
+	border: 1px solid var(--primary-color-base)
+}
+
+.lp-form-tpl__field-multi_select__input span {
+	display: inline-block;
+	vertical-align: middle
+}
+
+.lp-form-tpl__field-multi_select__input--count {
+	margin: 0
+}
+
+.lp-form-tpl__field-checkbox,
+.lp-form-tpl__field-radio {
+	display: inline-flex;
+	align-items: center;
+	margin-bottom: 12px;
+	cursor: pointer;
+}
+
+.lp-form-tpl__field-checkbox:last-child,
+.lp-form-tpl__field-radio:last-child {
+	margin-bottom: 0
+}
+
+.lp-form-tpl__field-checkbox [class^=lp-header],
+.lp-form-tpl__field-radio [class^=lp-header] {
+	padding: 0;
+	margin: 0
+}
+
+.lp-form-tpl__field-checkbox--input,
+.lp-form-tpl__field-radio--input {
+	position: relative;
+	flex: none;
+	width: 22px;
+	height: 22px;
+	box-sizing: border-box;
+	margin: 0 8px 0 0;
+	/*background: var(--content-background-lpc);*/
+	border: 1px solid var(--text-color-a-03);
+	transition: all .15s;
+	border-radius: 4px;
+}
+
+.lp-form-tpl__field-checkbox--text,
+.lp-form-tpl__field-radio--text {
+	align-self: center;
+}
+
+.lp-form-tpl__field-checkbox:hover .lp-form-tpl__field-checkbox--input,
+.lp-form-tpl__field-checkbox:hover .lp-form-tpl__field-radio--input,
+.lp-form-tpl__field-radio:hover .lp-form-tpl__field-checkbox--input,
+.lp-form-tpl__field-radio:hover .lp-form-tpl__field-radio--input {
+	border-color: var(--primary-color-base);
+}
+
+.lp-form-tpl__field-checkbox:hover input[type="checkbox"]:not(:checked) + .lp-form-tpl__field-checkbox--input,
+.lp-form-tpl__field-checkbox:hover input[type="checkbox"]:not(:checked) + .lp-form-tpl__field-radio--input,
+.lp-form-tpl__field-radio:hover .lp-form-tpl__field-checkbox--input,
+.lp-form-tpl__field-radio:hover .lp-form-tpl__field-radio--input {
+	background: var(--primary-color-a-01) !important;
+}
+
+
+.lp-form-tpl__field-checkbox:hover .lp-form-tpl__field-checkbox--text,
+.lp-form-tpl__field-checkbox:hover .lp-form-tpl__field-radio--text,
+.lp-form-tpl__field-radio:hover .lp-form-tpl__field-checkbox--text,
+.lp-form-tpl__field-radio:hover .lp-form-tpl__field-radio--text {
+	color: var(--primary-color-base)
+}
+
+._error._type-checkbox .lp-form-tpl__field-checkbox .lp-form-tpl__field-checkbox--input,
+._error._type-checkbox .lp-form-tpl__field-checkbox .lp-form-tpl__field-radio--input,
+._error._type-checkbox .lp-form-tpl__field-radio .lp-form-tpl__field-checkbox--input,
+._error._type-checkbox .lp-form-tpl__field-radio .lp-form-tpl__field-radio--input {
+	background: rgba(235, 87, 87, .1);
+	border-color: #eb5757;
+}
+
+.lp-form-tpl__field-checkbox input,
+.lp-form-tpl__field-radio input {
+    opacity: 0;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+}
+
+.lp-form-tpl__field-radio--input {
+	border-radius: 50%
+}
+
+input:checked+.lp-form-tpl__field-radio--input {
+	border: 6px solid var(--primary-color-base)
+}
+
+.lp-form-tpl__field-checkbox--input svg {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: scale(0);
+	margin: -4px 0 0 -5px;
+	transition: all .15s
+}
+
+.lp-form-tpl__field-checkbox--input svg path {
+	fill: #fff
+}
+
+._error._type-checkbox input:checked+.lp-form-tpl__field-checkbox--input,
+input:checked+.lp-form-tpl__field-checkbox--input {
+	background: var(--primary-color-base);
+	border-color: var(--primary-color-base);
+}
+
+input:checked+.lp-form-tpl__field-checkbox--input svg {
+	transform: none
+}
+
+.lp-form-tpl__field-checkbox:hover input:checked+.lp-form-tpl__field-checkbox--input {
+	background: var(--primary-color-base);
+	border-color: var(--primary-color-base)
+}
+
+.lp-form-tpl__field-calendar {
+	padding-right: 48px;
+	cursor: pointer
+}
+
+.lp-form-tpl__field-calendar--ico {
+	position: absolute;
+	right: 16px;
+	top: 50%;
+	margin-top: -12px;
+	pointer-events: none
+}
+
+.lp-form-tpl__item._type-calendar .lp-form-tpl__item-field,
+.lp-form-tpl__item._type-calendar_interval .lp-form-tpl__item-field {
+	position: relative;
+}
+.lp-form-tpl__item._type-calendar .lp-form-tpl__item-field:before,
+.lp-form-tpl__item._type-calendar_interval .lp-form-tpl__item-field:before {
+	position: absolute;
+    top: 50%;
+    right: 15px;
+    z-index: 2;
+    font-size: 16px;
+    line-height: 1;
+    font-family: lpc_icomoon;
+    content: none;
+    pointer-events: none;
+    transform: translateY(-50%) rotate(0.001deg);
+}
+
+.lp-form-tpl__field-calendar--ico {
+	position: absolute;
+	top: 50%;
+	right: 15px;
+	z-index: 2;
+	padding: 0 !important;
+    border: none !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    background: none !important;
+    transform: translateY(-50%) rotate(0.001deg);
+    pointer-events: none;
+    width: 24px;
+    height: 24px;
+    font-size: 0;
+}
+.lp-form-tpl__field-calendar--ico:before {
+    font-size: 20px;
+    line-height: 1;
+    font-family: lpc_icomoon;
+    content: "\e902";
+}
+
+
+.lp-form-tpl__button-wrapper {
+	padding-top: 16px
+}
+
+.lp-form-tpl__success {
+	text-align: center
+}
+
+.lp-form-tpl__success [class^=lp-header] {
+	padding: 0;
+	margin: 0
+}
+
+.lp-form-tpl__success path {
+	fill: var(--primary-color-base)
+}
+
+.lp-form-tpl__success-ico {
+	padding-bottom: 24px
+}
+
+.lp-form-tpl__success-title[class^=lp-header] {
+	padding-bottom: 8px
+}
+
+.lp-form-tpl__field-checkbox [class^=lp-header],
+.lp-form-tpl__field-radio [class^=lp-header] {
+	font-size: 16px;
+	line-height: 1.2;
+}
+
+._type-checkbox {
+	padding-top: 3px;
+}
+
+.lp-form-tpl__item._personal-bottom .lp-form-tpl__item-field {
+	padding: 3px 0 2px 0;
+}
+
+.lpc-upload-button {
+	margin-right: 6px;
+}
+
+.lpc-upload-button input {
+	display: none;
+}
+
+.upload-button {
+	display: flex;
+    align-items: center;
+}
+
+
+/*calendar styles*/
+#ui-datepicker-div.ui-datepicker {
+	border-color: var(--primary-color-base);
+}
+#ui-datepicker-div.ui-datepicker table.ui-datepicker-calendar tr td a.ui-state-default.ui-state-highlight {
+	color: var(--primary-color-base);
+}
+#ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-next:hover:hover, #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-next:hover:hover:before, #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-prev:hover, #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-prev:hover:before {
+	border-color: var(--primary-color-base);
+}
+#ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-prev:hover:before{
+	border-color: transparent var(--primary-color-base) transparent transparent;
+}
+#ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-next:hover:hover:before {
+    border-color: transparent transparent transparent var(--primary-color-base);
+}
+#ui-datepicker-div.ui-datepicker table.ui-datepicker-calendar tr td a.ui-state-default.ui-state-active {
+	border-color: var(--primary-color-base);
+	color: var(--primary-color-base);
+}
+
+/**/
+.content_contructor .lp-form-tpl__field-select__list._opened, .content_contructor .lp-form-tpl__field-multi_select__list._opened {
+	display: block !important;
+}
+.lpc-upload-button.lpc-button--type-2._v2-text {
+	padding: 8px 16px;
+}
+
+.lpc-form-upload-count.upload-count {
+	line-height: 1.1;
+	font-size: 14px;
+}
+
+.lp-form-tpl__field-textarea {
+	width: 100% !important;
+}
+
+
+/*Фикс <p> на чекбоксах*/
+.lp-form-tpl__item._type-checkbox .lp-form-tpl__field-checkbox--text p {
+	display: inline;
+}

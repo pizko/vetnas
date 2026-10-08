@@ -1,0 +1,17 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pages",
+  "info": { "singularName": "page", "pluralName": "pages", "displayName": "Page", "description": "Landing and static pages" },
+  "options": { "draftAndPublish": false },
+  "attributes": {
+    "slug": { "type": "uid", "required": true },
+    "title": { "type": "string" },
+    "metaDescription": { "type": "text" },
+    "ogImage": { "type": "string" },
+    "h1": { "type": "string" },
+    "kicker": { "type": "string" },
+    "breadcrumbLabel": { "type": "string" },
+    "pageType": { "type": "enumeration", "enum": ["landing", "static", "home"], "default": "landing" },
+    "body": { "type": "text", "maxLength": 200000 }
+  }
+}

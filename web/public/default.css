@@ -1,0 +1,128 @@
+.anketa-flash-upload div.fieldset {
+	border:  1px solid #ccc;
+	margin: 0 0 10px;
+	padding: 10px;
+}
+.anketa-flash-upload div.fieldset span.legend {
+	position: relative;
+	background-color: #FFF;
+	padding: 3px;
+	font: 700 14px Arial, Helvetica, sans-serif;
+	color: #73b304;
+}
+
+.anketa-flash-upload div.flash {
+	width: 70%;
+	/*margin: 10px 5px;*/
+	border-color: #ccc;
+
+	position:static;
+	height:auto;
+}
+
+.anketa-flash-upload .progressWrapper {
+	overflow: hidden;
+}
+
+.anketa-flash-upload .progressWrapper {
+	overflow: hidden;
+}
+
+.anketa-flash-upload .progressContainer {
+	margin: 5px;
+	padding: 4px;
+	border: solid 1px #E8E8E8;
+	background-color: #F7F7F7;
+	overflow: hidden;
+}
+/* Message */
+.anketa-flash-upload .message {
+	margin: 1em 0;
+	padding: 10px 20px;
+	border: solid 1px #FFDD99;
+	background-color: #FFFFCC;
+	overflow: hidden;
+}
+/* Error */
+.anketa-flash-upload .red {
+	border: solid 1px #B50000;
+	background-color: #FFEBEB;
+}
+
+/* Current */
+.anketa-flash-upload .green {
+	border: solid 1px #DDF0DD;
+	background-color: #EBFFEB;
+}
+
+/* Complete */
+.anketa-flash-upload .blue {
+	border: solid 1px #CEE2F2;
+	background-color: #F0F5FF;
+}
+
+.anketa-flash-upload .progressName {
+	font-size: 10px;
+	font-weight: 700;
+	color: #555;
+	width: 323px;
+	height: 18px;
+	text-align: left;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.anketa-flash-upload .progressBarInProgress,
+.anketa-flash-upload .progressBarComplete,
+.anketa-flash-upload .progressBarError {
+	font-size: 0;
+	width: 0%;
+	height: 2px;
+	background-color: blue;
+	margin-top: 2px;
+}
+
+.anketa-flash-upload .progressBarComplete {
+	width: 100%;
+	background-color: green;
+	visibility: hidden;
+}
+
+.anketa-flash-upload .progressBarError {
+	width: 100%;
+	background-color: red;
+	visibility: hidden;
+}
+
+.anketa-flash-upload .progressBarStatus {
+	margin-top: 2px;
+	width: 337px;
+	font-size: 7pt;
+	font-family: Arial;
+	text-align: left;
+	white-space: nowrap;
+}
+
+.anketa-flash-upload a.progressCancel {
+	font-size: 0;
+	display: block;
+	height: 14px;
+	width: 14px;
+	background-image: url(data:image/gif;base64,R0lGODlhHAAOAPcAAHE4M3Q4M3c5OHRAO3lHQYE7OIM+OYY/P4w9O5A9PJc+Q7c2QrMzTbc1Sbo2RLk3TYBAOoZCP4lCOopEOYxEOJRGP5pJO4NJQ4lQSpJDQJdAQJ5AQZ5FQ5pLQppNQpxLQ51NQJhTWZp4cKJFRKBOQKhCRqpGTKpJSKJOUa5TQ6JVWbBFRbJKSLNJTL1ER71HSb1LT75IU7ZZXL5QWKteZKBsbqVvcqx4erZgZbR6fMI2ScI3Tco3SMo7Rso4SMs6Tcs9Tc87Ss49S889Tco6V848U9I7StI9TdU+SdU+TdA+V9o+Vdw9UuM+UsZOTsVIUclIUs5eQ8BRU8FYWcFZWsJZXsFcX8peXtZBTNFKRthBTdVNUNVQU9ZSXtZVWd5SW9hbXsJeYMVaYdJaZNZaY8thQ89jQ9JlQ9ZmQ9pnRNpoQsNhb8Vnac9gYM5maMlpac1sbcl1d8l3eMh4e815e9ljZdllZtplat5mbdloa9pqbNxtfd50duRDT+VCV+VFV+lDVOlFV+1DVOtUT+JSXfBGU/BGVvJKVvNKWOVuTOhqTOlwTO1yTPFzTPV1S/Z0TeNqaulsbOxmceJ3d+d6e7p9gcl9gKKCe62HfqiNhbaTi72QkL2flr24uMKHiseCicWIj8yBhcmFi8qFjsqGkMqJksuLlMqNlcuPmMuRj8qRmsyRmcyRmsyTnM2Um8yVnc6bmt6ZodWiotOustKyrNWzt+KFhuGHi+eIi+KNkOaRluCTm+KWneOXouSWoOOYouObpOWbo+SbpeScpuWeqOWjoeSgquWirOajruWmruivreamsOaosOaosueqs9e8wNe9wsPIxsXIxs7LwMnMys3MytDJx9PLytHOzdXPz9rFx9HS0dfU0tvS0d3V1drZ0tva2t3a2d7e29/f3d3h3+7EyOzIwuDc2vDKzvLU2PLV2vXe4Ojl2OLm5Ofm5Ori4O7l4+vo5+rs6+zu7fLv7ffs6/b07Pf29fnw8Pj28/n39fr69/z49vv7+QAAAAAAACH5BAEAAP8ALAAAAAAcAA4AAAj/AO2Zq7OloMGCYJTZ+0ZriouHEB9KgfXNnJ5y6tJp3KgOXZ5itMLMgvaspElotayksnPMGTNmy14ui9msmRcqq17pbKWzp04YXJANG9YrmbBhxIgNNZbnBStTpki5KlXq1KlSplBZCUrs1zp+zH7hw2fM2LE7Tk+R0nbuFSlv3qyqquLEGLBk+vrpq9evX6w9vtysuKoq3Lhw3caNA7VmlAwWwXjtkpVvn2VPQpYwgbGhlKhPm8KJG31jgQ4dJUboypXrFrx79+iRafInUIsEoSxZmnMNHDhuM3gAGbIhAy5btt7Jm+dOXjxJhQ6dKEAnjhxr27ZV24ZtDBIsGgxQoprEJ1u7SjLIkcNj6BCHAHDesOlEzQYKadHEINGCAEIkSF2YkMMRTeBAQx+HuAdAG1fEoEANDvigQgg9YMEfBl8QogQRRSzhhyCAGGIIIhEQ8AQUDzDQwA4/GBFEEkloIQAnFQyiSCKLMNKIIzw+kgImmRiQRRRlmHEGGmokmYYFIrCjyQUfdOBBByBUScIBmLAzzSUDSCDBBF9SIKYAIkwTEAA7);
+	background-repeat: no-repeat;
+	background-position: -14px 0px;
+	float: right;
+}
+
+.anketa-flash-upload a.progressCancel:hover {
+	background-position: 0px 0px;
+}
+
+
+/* -- SWFUpload Object Styles ------------------------------- */
+.anketa-flash-upload .swfupload {
+	vertical-align: top;
+}
+.anketa-flash-upload .no-more {
+	font-size: 7pt;
+}
